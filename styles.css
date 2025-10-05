@@ -1,0 +1,239 @@
+:root {
+  --bg: #fef6f9;
+  --card: #fff;
+  --ink: #333;
+  --accent: #d43f8d;
+  --accent-2: #ffd1ec;
+  --muted: #777;
+  --danger: #b00020;
+  --radius: 12px;
+  --gap: 12px;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #ff9ecf;
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+button,
+.import-label {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.import-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+button.danger {
+  background: var(--danger);
+}
+
+#content {
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.region {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 18px;
+}
+.region > h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #222;
+}
+
+.plot-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+}
+
+.plot {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+.plot-header {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.plot-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.field input[type="text"] {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.field .status {
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 80px;
+  text-align: right;
+}
+
+footer {
+  padding: 12px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Grid layout for Fields West */
+.grid {
+  display: grid;
+  grid-template-columns: 40px repeat(var(--grid-cols), minmax(54px, 1fr)); /* row label + cols */
+  gap: 6px;
+  align-items: stretch;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #555;
+  background: #f0f0f3;
+  border-radius: 6px;
+  padding: 4px;
+  user-select: none;
+}
+.label.corner {
+  background: transparent;
+}
+.label.row {
+  font-weight: 700;
+}
+.label.col {
+  font-variant-numeric: tabular-nums;
+}
+
+.cell {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e6e6ea;
+  border-radius: 8px;
+  min-height: 72px; /* ensures enough room for 2 selects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+.cell.blocked {
+  background: #e1e1e6;
+  border-color: #d0d0d6;
+}
+
+.cell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cell select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d7d7de;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.mini-status {
+  text-align: right;
+  font-size: 10px;
+  color: #888;
+  min-height: 12px;
+}
+
+/* Compact grid: only usable squares, no labels */
+.grid-compact {
+  display: grid;
+  grid-template-columns: repeat(var(--compact-cols, 10), minmax(54px, 1fr));
+  gap: 6px;
+}
+
+.cell {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e6e6ea;
+  border-radius: 8px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.cell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cell select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #d7d7de;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.mini-status {
+  text-align: right;
+  font-size: 10px;
+  color: #888;
+  min-height: 12px;
+}
