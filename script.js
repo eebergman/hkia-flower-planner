@@ -15,21 +15,26 @@ const fields_west = [
   "00000111111000", // row 10
 ];
 
-// Small “Mini” block for Fields West/Mini
-const fields_mini = ["111", "111", "111"];
+const fields_mini = ["111", "111"];
 
-/* =========================
-   Helpers
-   ========================= */
+const fields_east = [
+  "0000000000110", // a
+  "0000000001110", // b
+  "0000000111110", // c
+  "1111111111111", // d
+  "1111111111110", // e
+  "0001111111100", // f
+  "0000000011000", // g
+];
 
 // Find longest row length
-function widestRowLen(rows) {
+function widestRowLength(rows) {
   return Math.max(...rows.map((r) => r.length));
 }
 
 // Render a single grid into a container
 function renderGrid(container, rows, idPrefix) {
-  const cols = widestRowLen(rows);
+  const cols = widestRowLength(rows);
   if (container.classList.contains("grid")) {
     container.style.setProperty("--cols", cols);
   }
@@ -117,15 +122,16 @@ function renderMany(configs) {
 document.addEventListener("DOMContentLoaded", () => {
   // mount the two Fields West grids
   renderMany([
-    { el: "#grid", rows: fields_west, prefix: "main" },
-    { el: "#floating", rows: fields_mini, prefix: "float" },
+    { el: "#fields-west", rows: fields_west, prefix: "fields-west" },
+    { el: "#fields-west-mini", rows: fields_mini, prefix: "fields-west-mini" },
+    { el: "#fields-east", rows: fields_east, prefix: "fields-east" },
   ]);
 
   // Clear button to wipe only our saved grid cells (not panel open/close)
   const clearBtn = document.getElementById("clear");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
-      const prefixes = ["main", "float"];
+      const prefixes = ["fields-west", "float"];
       const keys = [];
       for (let i = 0; i < localStorage.length; i++) {
         const k = localStorage.key(i);
@@ -133,9 +139,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       keys.forEach((k) => localStorage.removeItem(k));
       renderMany([
-        { el: "#grid", rows: fields_west, prefix: "main" },
-        { el: "#floating", rows: fields_mini, prefix: "float" },
+        { el: "#fields-west", rows: fields_west, prefix: "fields-west" },
+        {
+          el: "#fields-west-mini",
+          rows: fields_mini,
+          prefix: "fields-west-mini",
+        },
       ]);
+    });
+  }
+
+  const clearEastBtn = document.getElementById("clear-east");
+  if (clearEastBtn) {
+    clearEastBtn.addEventListener("click", () => {
+      const prefix = "fields-east";
+      const toDelete = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(prefix + "-")) toDelete.push(k);
+      }
+      toDelete.forEach((k) => localStorage.removeItem(k));
+      renderGrid(
+        document.getElementById("fields-east"),
+        fields_east,
+        "fields-east"
+      );
     });
   }
 });
