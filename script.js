@@ -2,7 +2,7 @@
    Layout data (edit freely)
    ========================= */
 
-const MAP = [
+const fields_west = [
   "11100000000000", // row 1
   "11111111110000", // row 2
   "01111111111100", // row 3
@@ -117,7 +117,7 @@ function renderMany(configs) {
 document.addEventListener("DOMContentLoaded", () => {
   // mount the two Fields West grids
   renderMany([
-    { el: "#grid", rows: MAP, prefix: "main" },
+    { el: "#grid", rows: fields_west, prefix: "main" },
     { el: "#floating", rows: fields_mini, prefix: "float" },
   ]);
 
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       keys.forEach((k) => localStorage.removeItem(k));
       renderMany([
-        { el: "#grid", rows: MAP, prefix: "main" },
+        { el: "#grid", rows: fields_west, prefix: "main" },
         { el: "#floating", rows: fields_mini, prefix: "float" },
       ]);
     });
