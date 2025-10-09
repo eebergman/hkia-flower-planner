@@ -38,7 +38,7 @@ body {
   margin: 10px 0;
 }
 .panel > summary {
-  background: var(--summary-bg);
+  background: var(--fields-west);
   color: var(--summary-fg);
   padding: var(--panel-pad);
   border-radius: var(--panel-radius);
