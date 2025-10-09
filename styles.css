@@ -107,7 +107,7 @@ body {
   background: transparent;
 }
 
-.floating {
+.field-mini {
   margin-top: 16px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, var(--cell-size)));
