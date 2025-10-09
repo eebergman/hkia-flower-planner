@@ -1,10 +1,7 @@
-/*
-  LAYOUT
-  ------
-  Each string is a row. Use '1' for a cell, '0' or space for empty.
-  The number of characters in the longest row = grid column count.
-  This MAP approximates the screenshot’s stepped outline.
-*/
+/* =========================
+   Layout data (edit freely)
+   ========================= */
+
 const MAP = [
   "11100000000000", // row 1
   "11111111110000", // row 2
@@ -18,15 +15,19 @@ const MAP = [
   "00000111111000", // row 10
 ];
 
-/* Detached little block (3×3) */
-const FLOATING_MAP = ["111", "111", "111"];
+// Small “Mini” block for Fields West/Mini
+const fields_mini = ["111", "111", "111"];
 
-/* ---------- Rendering ---------- */
+/* =========================
+   Helpers
+   ========================= */
 
+// Find longest row length
 function widestRowLen(rows) {
   return Math.max(...rows.map((r) => r.length));
 }
 
+// Render a single grid into a container
 function renderGrid(container, rows, idPrefix) {
   const cols = widestRowLen(rows);
   if (container.classList.contains("grid")) {
@@ -35,27 +36,24 @@ function renderGrid(container, rows, idPrefix) {
   const frag = document.createDocumentFragment();
 
   rows.forEach((row, rIdx) => {
-    // Pad rows to uniform width so CSS grid positions are stable
     const padded = row.padEnd(cols, " ");
     [...padded].forEach((ch, cIdx) => {
       if (ch === "1") {
         const cell = document.createElement("div");
         cell.className = "cell";
         cell.contentEditable = "true";
-        // place at row rIdx+1, column cIdx+1
         cell.style.gridColumn = (cIdx + 1).toString();
         cell.style.gridRow = (rIdx + 1).toString();
         const cellId = `${idPrefix}-${rIdx}-${cIdx}`;
         cell.dataset.key = cellId;
 
-        // restore saved state
+        // restore
         const saved = JSON.parse(localStorage.getItem(cellId) || "{}");
         if (saved.text) cell.textContent = saved.text;
         if (saved.marked) cell.classList.add("marked");
 
         // interactions
-        cell.addEventListener("click", (e) => {
-          // Toggle highlight unless the user is selecting text
+        cell.addEventListener("click", () => {
           if (window.getSelection().toString().length === 0) {
             cell.classList.toggle("marked");
             persistCell(cell);
@@ -72,6 +70,7 @@ function renderGrid(container, rows, idPrefix) {
   container.replaceChildren(frag);
 }
 
+// Save a single cell’s state
 function persistCell(cell) {
   const key = cell.dataset.key;
   const payload = {
@@ -81,21 +80,62 @@ function persistCell(cell) {
   localStorage.setItem(key, JSON.stringify(payload));
 }
 
-/* ---------- Clear button ---------- */
-document.getElementById("clear").addEventListener("click", () => {
-  // Only remove keys created by this page (prefixes we used)
-  const prefixes = ["main", "float"];
-  const toDelete = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const k = localStorage.key(i);
-    if (prefixes.some((p) => k.startsWith(p + "-"))) toDelete.push(k);
-  }
-  toDelete.forEach((k) => localStorage.removeItem(k));
-  // Re-render fresh
-  renderGrid(document.getElementById("grid"), MAP, "main");
-  renderGrid(document.getElementById("floating"), FLOATING_MAP, "float");
-});
+// Render many grids at once
+function renderMany(configs) {
+  configs.forEach(({ el, rows, prefix }) => {
+    const node = typeof el === "string" ? document.querySelector(el) : el;
+    if (!node) {
+      console.warn("renderMany: container not found for", el);
+      return;
+    }
+    renderGrid(node, rows, prefix);
+  });
+}
 
-/* ---------- Initial render ---------- */
-renderGrid(document.getElementById("grid"), MAP, "main");
-renderGrid(document.getElementById("floating"), FLOATING_MAP, "float");
+/* =========================
+   Persist <details> state
+   ========================= */
+(function persistDisclosures(root = document) {
+  const KEY_PREFIX = "disclosure:";
+  const all = [...root.querySelectorAll("details[data-id]")];
+
+  // restore
+  all.forEach((d) => {
+    const k = KEY_PREFIX + d.dataset.id;
+    const saved = localStorage.getItem(k);
+    if (saved !== null) d.open = saved === "1";
+    d.addEventListener("toggle", () => {
+      localStorage.setItem(k, d.open ? "1" : "0");
+    });
+  });
+})();
+
+/* =========================
+   Init
+   ========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  // mount the two Fields West grids
+  renderMany([
+    { el: "#grid", rows: MAP, prefix: "main" },
+    { el: "#floating", rows: fields_mini, prefix: "float" },
+  ]);
+
+  // Clear button to wipe only our saved grid cells (not panel open/close)
+  const clearBtn = document.getElementById("clear");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      const prefixes = ["main", "float"];
+      const keys = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (prefixes.some((p) => k.startsWith(p + "-"))) keys.push(k);
+      }
+      keys.forEach((k) => localStorage.removeItem(k));
+      renderMany([
+        { el: "#grid", rows: MAP, prefix: "main" },
+        { el: "#floating", rows: fields_mini, prefix: "float" },
+      ]);
+    });
+  }
+});

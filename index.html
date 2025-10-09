@@ -1,20 +1,118 @@
-<div id="app">
-	<header>
-		<h1>HKIA — Plot & Planting Tracker</h1>
-		<div class="actions">
-			<button id="exportBtn" type="button">Export</button>
-			<label class="import-label">
-				Import <input id="importInput" type="file" accept="application/json" hidden />
-			</label>
-			<button id="clearBtn" type="button" class="danger">Clear All</button>
-		</div>
-	</header>
+<!DOCTYPE html>
+<html lang="en">
 
-	<main id="content">
-		<!-- Regions and plots will render here -->
-	</main>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Meadows</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
 
-	<footer>
-		<small>Data is stored locally in your browser.</small>
-	</footer>
-</div>
+<body>
+	<div class="wrap">
+		<!-- Top-level Meadows panel -->
+		<details class="panel meadows" open data-id="meadows">
+			<summary>Meadows</summary>
+			<div class="panel-body">
+
+				<!-- Fields West with nested "Mini" -->
+				<details class="panel fields-west" open data-id="fields-west">
+					<summary>Fields West</summary>
+					<div class="panel-body">
+						<div class="toolbar">
+							<button id="clear">Clear Saved Data</button>
+							<small>Tip: click a cell to toggle highlight; type to add notes.</small>
+						</div>
+
+						<!-- Main grid mount -->
+						<div id="grid" class="grid" aria-label="Fields West • Main"></div>
+
+						<!-- Nested “Mini” sub-panel that holds the small floating grid -->
+						<details class="panel" data-id="fields-west-mini">
+							<summary>Mini</summary>
+							<div class="panel-body">
+								<div id="floating" class="floating" aria-label="Fields West • Mini"></div>
+							</div>
+						</details>
+					</div>
+				</details>
+
+				<!-- The rest of Meadows sections (ready for future content) -->
+				<details class="panel" data-id="fields-east">
+					<summary>Fields East</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="plaza-garden">
+					<summary>Plaza Garden</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="overlook-near">
+					<summary>Overlook Near</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="overlook-far">
+					<summary>Overlook Far</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="temple-corner">
+					<summary>Temple Corner</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="meadow-corral">
+					<summary>Meadow Corral</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="gazebo-north">
+					<summary>Gazebo North</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="gazebo-west">
+					<summary>Gazebo West</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="gazebo-east">
+					<summary>Gazebo East</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="greenhouse">
+					<summary>Greenhouse</summary>
+					<div class="panel-body">
+						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+
+</html>
