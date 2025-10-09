@@ -32,6 +32,28 @@ function widestRowLength(rows) {
   return Math.max(...rows.map((r) => r.length));
 }
 
+function bindClearBtn(button, prefixes, renders) {
+  const btn =
+    typeof button === "string" ? document.querySelector(button) : button;
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    // collect keys first, then delete (avoid mutating during iteration)
+    const keysToDelete = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k) continue;
+      if (prefixes.some((p) => k.startsWith(p + "-"))) keysToDelete.push(k);
+    }
+    keysToDelete.forEach((k) => localStorage.removeItem(k));
+
+    // re-render the affected grids
+    if (Array.isArray(renders) && renders.length) {
+      renderMany(renders);
+    }
+  });
+}
+
 // Render a single grid into a container
 function renderGrid(container, rows, idPrefix) {
   const cols = widestRowLength(rows);
@@ -115,10 +137,6 @@ function renderMany(configs) {
   });
 })();
 
-/* =========================
-   Init
-   ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   // mount the two Fields West grids
   renderMany([
@@ -127,43 +145,23 @@ document.addEventListener("DOMContentLoaded", () => {
     { el: "#fields-east", rows: fields_east, prefix: "fields-east" },
   ]);
 
-  // Clear button to wipe only our saved grid cells (not panel open/close)
-  const clearBtn = document.getElementById("clear");
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      const prefixes = ["fields-west", "float"];
-      const keys = [];
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (prefixes.some((p) => k.startsWith(p + "-"))) keys.push(k);
-      }
-      keys.forEach((k) => localStorage.removeItem(k));
-      renderMany([
-        { el: "#fields-west", rows: fields_west, prefix: "fields-west" },
-        {
-          el: "#fields-west-mini",
-          rows: fields_mini,
-          prefix: "fields-west-mini",
-        },
-      ]);
-    });
-  }
+  bindClearBtn(
+    "#clear-fields-west",
+    ["fields-west", "fields-west-mini"],
+    [
+      { el: "#fields-west", rows: fields_west, prefix: "fields-west" },
+      {
+        el: "#fields-west-mini",
+        rows: fields_mini,
+        prefix: "fields-west-mini",
+      },
+    ]
+  );
 
-  const clearEastBtn = document.getElementById("clear-east");
-  if (clearEastBtn) {
-    clearEastBtn.addEventListener("click", () => {
-      const prefix = "fields-east";
-      const toDelete = [];
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (k && k.startsWith(prefix + "-")) toDelete.push(k);
-      }
-      toDelete.forEach((k) => localStorage.removeItem(k));
-      renderGrid(
-        document.getElementById("fields-east"),
-        fields_east,
-        "fields-east"
-      );
-    });
-  }
+  // Fields East (clears east, re-renders east)
+  bindClearBtn(
+    "#clear-east",
+    ["fields-east"],
+    [{ el: "#fields-east", rows: fields_east, prefix: "fields-east" }]
+  );
 });
