@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 
 <head>
@@ -9,23 +9,25 @@
 </head>
 
 <body>
+	<header class="site-header" role="banner">
+		<div class="site-header__inner">
+			<h2>HKIA Garden Planning</h2>
+		</div>
+	</header>
 	<div class="wrap">
-		<!-- Top-level Meadows panel -->
+
 		<details class="panel meadows" open data-id="meadows">
 			<summary>Meadows</summary>
 			<div class="panel-body">
 
-				<!-- Fields West with nested "Mini" -->
 				<details class="panel fields-west" open data-id="fields-west">
-					<summary>Fields West</summary>
+					<summary>Fields West and Mini</summary>
 					<div class="panel-body">
+						<div id="fields-west" class="grid" aria-label="Fields West and Mini"></div>
 						<div class="toolbar">
-							<button id="clear-fields-west">Clear Saved Data</button>
-							<small>Tip: click a cell to toggle highlight; type to add notes.</small>
+							<button id="clear-fields-west">Clear West and Mini Data</button>
+							<small>Tip: click a cell to get started.</small>
 						</div>
-
-						<!-- Fields West mount -->
-						<div id="fields-west" class="grid" aria-label="Fields West"></div>
 
 						<!-- Nested “Mini” sub-panel that holds the small floating grid -->
 						<details class="panel" data-id="fields-west-mini">
@@ -40,11 +42,11 @@
 				<details class="panel" data-id="fields-east">
 					<summary>Fields East</summary>
 					<div class="panel-body">
-						<div class="toolbar">
-							<button id="clear-east">Clear Saved Data</button>
-							<small>Same interactions: click to highlight; type to add notes.</small>
-						</div>
 						<div id="fields-east" class="grid" aria-label="Fields East"></div>
+						<div class="toolbar">
+							<button id="clear-east">Clear All East Data</button>
+							<small>Tip: click a cell to get started.</small>
+						</div>
 					</div>
 				</details>
 
@@ -113,6 +115,54 @@
 
 			</div>
 		</details>
+	</div>
+
+	<div id="cell-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true"
+		aria-labelledby="cell-modal-title">
+		<div class="modal-backdrop" id="cell-backdrop"></div>
+		<div class="modal-dialog" role="document">
+			<h2 id="cell-modal-title">Edit Plot</h2>
+			<form id="cell-form">
+				<div class="form-row">
+					<label class="checkbox">
+						<input type="checkbox" id="cell-empty" />
+						Mark Plot Empty for New Plants to Grow?
+					</label>
+				</div>
+				<div class="form-row">
+					<label for="cell-color">Color</label>
+					<select id="cell-color" required>
+						<option value="">Choose the color...</option>
+					</select>
+				</div>
+				<div class="form-row">
+					<label for="cell-flower">Flower</label>
+					<select id="cell-flower" required>
+						<option value="">Choose the species...</option>
+					</select>
+				</div>
+				<div class="form-row">
+					<label for="cell-pattern">Pattern <small>(optional)</small></label>
+					<select id="cell-pattern">
+						<option value="">No pattern</option>
+					</select>
+				</div>
+				<div class="form-row">
+					<label for="cell-notes">Notes <small><span id="notes-count">0</span>/250</small></label>
+					<textarea id="cell-notes" rows="3" maxlength="250"
+						placeholder="e.g. Breeding for Seafoam Bellbutton">
+					</textarea>
+				</div>
+				<p id="cell-error" class="form-error" aria-live="polite"></p>
+				<div class="modal-actions">
+					<button type="button" id="cell-clear">Clear Plot</button>
+					<div class="form-actions">
+						<button type="button" id="cell-cancel">Cancel</button>
+						<button type="submit" id="cell-submit">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<script src="script.js"></script>
