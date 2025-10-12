@@ -268,10 +268,9 @@ label:has(+ select:required):after {
   color: var(--red);
 }
 
-/* Make disabled controls look obviously disabled */
 select:disabled {
-  opacity: 0.5;
-  filter: grayscale(0.5);
+  opacity: 0.6;
+  filter: grayscale(0.3);
   cursor: not-allowed;
 }
 
@@ -282,4 +281,9 @@ select:disabled {
   border-radius: var(--eight-px);
   color: var(--dark-gray);
   font-size: var(--fourteen-px);
+}
+
+.option-not-allowed {
+  font-style: italic;
+  opacity: 0.85;
 }

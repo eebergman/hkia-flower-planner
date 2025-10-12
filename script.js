@@ -1,5 +1,20 @@
+// import {
+//   allFlowerColors,
+//   flowerSpecies,
+//   flowerPatterns,
+// } from "./flowerData.js";
+
+// import {
+//   fieldsWest,
+//   fieldsMini,
+//   fieldsEast,
+//   plazaGarden,
+//   overlookNear,
+// } from "./plotData.js";
+
 const defaultPlotColor = "#9b590d";
 const blankPlotColor = "#8d775d";
+const max_notes_chars = 250;
 
 const allFlowerColors = [
   { name: "Black", hex: "#000000", text: "#ffffff" },
@@ -37,30 +52,230 @@ const allFlowerColors = [
 ];
 
 const flowerSpecies = [
-  { name: "Bellbutton", code: "BL" },
-  { name: "Dandelily", code: "DL" },
-  { name: "Pestemum", code: "PM" },
-  { name: "Tulias", code: "TL" },
-  { name: "Hibiscus", code: "HB" },
-  { name: "Ghostgleam", code: "GG" },
-  { name: "Thistle", code: "TH" },
-  { name: "Heavy Nettle", code: "HN" },
-  { name: "Anemone", code: "AN" },
-  { name: "Dreampuff", code: "DP" },
-  { name: "Frostfeather", code: "FF" },
-  { name: "Blazebulb", code: "BZ" },
-  { name: "Crystalia", code: "CY" },
-  { name: "Marigold", code: "MG" },
-  { name: "Eggwort", code: "EG" },
-  { name: "Pinwheel", code: "PW" },
-  { name: "Petunia", code: "PT" },
-  { name: "Bowblossom", code: "BB" },
-  { name: "Poinsettia", code: "PS" },
-  { name: "Glowbal", code: "GB" },
-  { name: "Rose", code: "RS" },
-  { name: "Happadil", code: "HP" },
-  { name: "Wheatflower", code: "WF" },
+  {
+    name: "Bellbutton",
+    code: "BL",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Gemstone",
+      "Greenhouse",
+      "Cloud",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Dandelily",
+    code: "DL",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Gemstone",
+      "Greenhouse",
+      "Cloud",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Pestemum",
+    code: "PM",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Gemstone",
+      "Greenhouse",
+      "Cloud",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Tulias",
+    code: "TL",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Gemstone",
+      "Greenhouse",
+      "Cloud",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Hibiscus",
+    code: "HB",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Volcano",
+      "Greenhouse",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Ghostgleam",
+    code: "GG",
+    biomes: ["Swamp", "Gemstone", "Reef", "Greenhouse", "Cloud", "Wheatflower"],
+  },
+  {
+    name: "Thistle",
+    code: "TH",
+    biomes: ["Swamp", "Gemstone", "Volcano", "Greenhouse", "Wheatflower"],
+  },
+  {
+    name: "Heavy Nettle",
+    code: "HN",
+    biomes: ["Gemstone", "Volcano", "Greenhouse", "Wheatflower"],
+  },
+  {
+    name: "Anemone",
+    code: "AN",
+    biomes: ["Reef", "Greenhouse", "Cloud", "Wheatflower"],
+  },
+  {
+    name: "Dreampuff",
+    code: "DP",
+    biomes: ["Greenhouse", "Cloud", "Wheatflower"],
+  },
+  { name: "Frostfeather", code: "FF", biomes: ["Peak"] },
+  { name: "Blazebulb", code: "BZ", biomes: ["Caldera"] },
+  { name: "Crystalia", code: "CY", biomes: ["Caves"] },
+  { name: "Bubbaluna", code: "BU", biomes: ["Moon"] },
+  {
+    name: "Wheatflower",
+    code: "WF",
+    biomes: ["Greenhouse", "Wheatflower"],
+  },
+  {
+    name: "Marigold",
+    code: "MG",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Gemstone",
+      "Volcano",
+      "Greenhouse",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Eggwort",
+    code: "EG",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Gemstone",
+      "Volcano",
+      "Reef",
+      "Greenhouse",
+      "Cloud",
+      "Peak",
+      "Caldera",
+      "Caves",
+      "Moon",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Pinwheel",
+    code: "PW",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Gemstone",
+      "Greenhouse",
+      "Cloud",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Petunia",
+    code: "PT",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Gemstone",
+      "Greenhouse",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Bowblossom",
+    code: "BB",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Reef",
+      "Greenhouse",
+      "Cloud",
+      "Peak",
+      "Caldera",
+      "Caves",
+      "Wheatflower",
+    ],
+  },
+  {
+    name: "Poinsettia",
+    code: "PS",
+    biomes: ["Meadow", "Resort", "Swamp", "Greenhouse", "Wheatflower"],
+  },
+  {
+    name: "Glowbal",
+    code: "GB",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Swamp",
+      "Greenhouse",
+      "Cloud",
+      "Peak",
+      "Caldera",
+      "Caves",
+      "Wheatflower",
+      "Moon",
+    ],
+  },
+  {
+    name: "Rose",
+    code: "RS",
+    biomes: ["Meadow", "Resort", "Greenhouse", "Wheatflower"],
+  },
+  {
+    name: "Happadil",
+    code: "HP",
+    biomes: [
+      "Meadow",
+      "Resort",
+      "Gemstone",
+      "Volcano",
+      "Greenhouse",
+      "Cloud",
+      "Caves",
+      "Wheatflower",
+      "Moon",
+    ],
+  },
 ];
+
+// Map the grid areas
+const areaBiomeIndex = {
+  "fields-west": "Meadow",
+  "fields-east": "Meadow",
+  "fields-west-mini": "Meadow",
+  "plaza-garden": "Meadow",
+  "overlook-near": "Meadow",
+
+  // Add Resort areas when you add those grids:
+  // "hopscotch-islands": "Resort",
+  // "topmost-west": "Resort",
+  // "upper-west": "Resort",
+};
 
 const flowerPatterns = [
   "Ombré",
@@ -80,7 +295,7 @@ const flowerPatterns = [
   "Glow",
 ];
 
-const fields_west = [
+const fieldsWest = [
   "11100000000000",
   "11111111110000",
   "01111111111100",
@@ -93,9 +308,9 @@ const fields_west = [
   "00000111111000",
 ];
 
-const fields_mini = ["111", "111"];
+const fieldsMini = ["111", "111"];
 
-const fields_east = [
+const fieldsEast = [
   "0000000000110", // a
   "0000000001110", // b
   "0000000111110", // c
@@ -105,9 +320,51 @@ const fields_east = [
   "0000000011000", // g
 ];
 
-// Find longest row length
+const plazaGarden = [
+  /*       12345678
+  /* A */ "01110000",
+  /* B */ "11110000",
+  /* C */ "11111000",
+  /* D */ "11111111",
+  /* E */ "11111111",
+  /* F */ "01111111",
+  /* G */ "00001111",
+  /* H */ "00000010",
+];
+
+const overlookNear = [
+  /*       123456789012345
+  /* A */ "100000000000001",
+  /* B */ "000000000000000",
+  /* C */ "111000000000011",
+];
+
 function widestRowLength(rows) {
   return Math.max(...rows.map((r) => r.length));
+}
+
+function setSelectByValue(selectEl, value) {
+  if (!value) {
+    selectEl.value = "";
+    return;
+  }
+  const match = [...selectEl.options].find((o) => o.value === value);
+  selectEl.value = match ? value : "";
+}
+
+function getSavedStateMap(prefix) {
+  const map = new Map();
+  const needle = prefix + "-";
+  for (let i = 0, len = localStorage.length; i < len; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(needle)) {
+      try {
+        const v = localStorage.getItem(k);
+        if (v) map.set(k, JSON.parse(v));
+      } catch {}
+    }
+  }
+  return map;
 }
 
 function bindClearBtn(button, prefixes, renders) {
@@ -115,20 +372,26 @@ function bindClearBtn(button, prefixes, renders) {
     typeof button === "string" ? document.querySelector(button) : button;
   if (!btn) return;
 
+  const prefixSet = new Set(prefixes.map((p) => p + "-"));
+
   btn.addEventListener("click", () => {
     const keysToDelete = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (!k) continue;
-      if (prefixes.some((p) => k.startsWith(p + "-"))) keysToDelete.push(k);
+    for (let i = 0, len = localStorage.length; i < len; i++) {
+      const storageKey = localStorage.key(i);
+      if (!storageKey) continue;
+      for (const pref of prefixSet) {
+        if (storageKey.startsWith(pref)) {
+          keysToDelete.push(storageKey);
+          break;
+        }
+      }
     }
-    keysToDelete.forEach((k) => localStorage.removeItem(k));
+    for (const k of keysToDelete) localStorage.removeItem(k);
 
-    if (Array.isArray(renders) && renders.length) {
-      renderMany(renders);
-    }
+    if (Array.isArray(renders) && renders.length) renderMany(renders);
   });
 }
+
 // Erin todo
 // if pattern is equal to Ombré, Trim, Speckled, Alternate, Striped, Patch, Ring, or Confetti
 // This should unlock optional secondary color select.
@@ -170,61 +433,82 @@ function renderGrid(container, rows, idPrefix) {
   if (container.classList.contains("grid")) {
     container.style.setProperty("--cols", cols);
   }
+
+  const savedMap = getSavedStateMap(idPrefix);
+
   const frag = document.createDocumentFragment();
 
-  rows.forEach((row, rIdx) => {
+  for (let rIdx = 0; rIdx < rows.length; rIdx++) {
+    const row = rows[rIdx];
     const padded = row.padEnd(cols, " ");
-    [...padded].forEach((ch, cIdx) => {
-      if (ch === "1") {
-        const flowerPlot = document.createElement("div");
-        flowerPlot.className = "cell";
-        flowerPlot.style.gridColumn = (cIdx + 1).toString();
-        flowerPlot.style.gridRow = (rIdx + 1).toString();
-        const cellId = `${idPrefix}-${rIdx}-${cIdx}`;
-        flowerPlot.dataset.key = cellId;
+    for (let cIdx = 0; cIdx < padded.length; cIdx++) {
+      if (padded[cIdx] !== "1") continue;
 
-        const saved = JSON.parse(localStorage.getItem(cellId) || "{}");
-        buildFlowerPlot(flowerPlot, saved);
+      const flowerPlot = document.createElement("div");
+      flowerPlot.className = "cell";
+      flowerPlot.style.gridColumn = (cIdx + 1).toString();
+      flowerPlot.style.gridRow = (rIdx + 1).toString();
+      const cellId = `${idPrefix}-${rIdx}-${cIdx}`;
+      flowerPlot.dataset.key = cellId;
 
-        flowerPlot.addEventListener("click", () =>
-          openCellModal(flowerPlot, cellId)
-        );
+      const saved = savedMap.get(cellId) || {};
+      buildFlowerPlot(flowerPlot, saved);
 
-        frag.appendChild(flowerPlot);
-      }
-    });
-  });
+      frag.appendChild(flowerPlot);
+    }
+  }
 
   container.replaceChildren(frag);
 }
 
 function renderMany(configs) {
-  configs.forEach(({ el, rows, prefix }) => {
+  for (const { el, rows, prefix } of configs) {
     const node = typeof el === "string" ? document.querySelector(el) : el;
     if (!node) {
       console.warn("renderMany: container not found for", el);
-      return;
+      continue;
     }
     renderGrid(node, rows, prefix);
-  });
+  }
 }
 
 (function persistDisclosures(root = document) {
   const KEY_PREFIX = "disclosure:";
-  const all = [...root.querySelectorAll("details[data-id]")];
+  const disclosureElements = [...root.querySelectorAll("details[data-id]")];
 
-  // restore
-  all.forEach((d) => {
-    const k = KEY_PREFIX + d.dataset.id;
-    const saved = localStorage.getItem(k);
-    if (saved !== null) d.open = saved === "1";
-    d.addEventListener("toggle", () => {
-      localStorage.setItem(k, d.open ? "1" : "0");
+  for (const detailsEl of disclosureElements) {
+    const storageKey = KEY_PREFIX + detailsEl.dataset.id;
+    const savedValue = localStorage.getItem(storageKey);
+    if (savedValue !== null) detailsEl.open = savedValue === "1";
+    detailsEl.addEventListener("toggle", () => {
+      localStorage.setItem(storageKey, detailsEl.open ? "1" : "0");
     });
-  });
+  }
 })();
 
-const max_notes_chars = 250;
+// Pull biome from a cell key like "fields-west-3-7"
+function biomeFromCellKey(cellKey) {
+  const areaPrefix = cellKey.replace(/-\d+-\d+$/, "");
+  return areaBiomeIndex[areaPrefix] || null;
+}
+
+function speciesForBiome(biome) {
+  if (!biome) return flowerSpecies; // fallback
+  return flowerSpecies.filter(
+    (s) => Array.isArray(s.biomes) && s.biomes.includes(biome)
+  );
+}
+
+function renderSpeciesOptions(speciesList) {
+  return ['<option value="">Choose the species...</option>']
+    .concat(
+      speciesList.map(
+        (s) =>
+          `<option value="${s.code}" data-name="${s.name}">${s.name} (${s.code})</option>`
+      )
+    )
+    .join("");
+}
 
 let flowerModal,
   backdrop,
@@ -237,7 +521,8 @@ let flowerModal,
   lastFocus,
   currentPlot,
   currentKey,
-  intentionallyEmptyPlotCheckbox;
+  intentionallyEmptyPlotCheckbox,
+  clearPlotButton;
 
 function setupModal() {
   flowerModal = document.getElementById("cell-modal");
@@ -251,33 +536,29 @@ function setupModal() {
   errorElement = document.getElementById("cell-error");
   intentionallyEmptyPlotCheckbox = document.getElementById("cell-empty");
 
-  allFlowerColors.forEach((flowerColor) => {
-    const opt = document.createElement("option");
-    opt.value = flowerColor.hex;
-    opt.textContent = flowerColor.name;
-    opt.dataset.name = flowerColor.name;
-    colorSelect.appendChild(opt);
-  });
+  // Build options markup once (fastest for large lists)
+  const colorOptions = ['<option value="">Choose the color...</option>']
+    .concat(
+      allFlowerColors.map(
+        (c) =>
+          `<option value="${c.hex}" data-name="${c.name}">${c.name}</option>`
+      )
+    )
+    .join("");
 
-  flowerSpecies.forEach((flowerSpecies) => {
-    const opt = document.createElement("option");
-    opt.value = flowerSpecies.code;
-    opt.textContent = `${flowerSpecies.name} (${flowerSpecies.code})`;
-    opt.dataset.name = flowerSpecies.name;
-    flowerSelect.appendChild(opt);
-  });
+  const patternOptions = ['<option value="">No pattern</option>']
+    .concat(flowerPatterns.map((p) => `<option value="${p}">${p}</option>`))
+    .join("");
 
-  flowerPatterns.forEach((name) => {
-    const opt = document.createElement("option");
-    opt.value = name;
-    opt.textContent = name;
-    patternSelect.appendChild(opt);
-  });
+  colorSelect.innerHTML = colorOptions;
+  flowerSelect.innerHTML = '<option value="">Choose the species...</option>';
+  patternSelect.innerHTML = patternOptions;
 
   const counter = document.getElementById("notes-count");
   plotNotes.addEventListener("input", () => {
-    if (plotNotes.value.length > max_notes_chars)
-      plotNotes.value = plotNotes.value.slice(0, max_notes_chars);
+    const v = plotNotes.value;
+    if (v.length > max_notes_chars)
+      plotNotes.value = v.slice(0, max_notes_chars);
     counter.textContent = String(plotNotes.value.length);
   });
 
@@ -285,12 +566,12 @@ function setupModal() {
     .getElementById("cell-cancel")
     .addEventListener("click", closeCellModal);
   backdrop.addEventListener("click", closeCellModal);
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener("keydown", (event) => {
     if (
       flowerModal.getAttribute("aria-hidden") === "false" &&
-      e.key === "Escape"
+      event.key === "Escape"
     ) {
-      e.preventDefault();
+      event.preventDefault();
       closeCellModal();
     }
   });
@@ -312,6 +593,7 @@ function setupModal() {
     }
   });
 
+  // Submit handler (single source of truth)
   flowerForm.addEventListener("submit", (event) => {
     event.preventDefault();
     errorElement.textContent = "";
@@ -359,6 +641,7 @@ function setupModal() {
     closeCellModal();
   });
 
+  // Clear = hard reset to default brown
   clearPlotButton.addEventListener("click", () => {
     if (currentKey) localStorage.removeItem(currentKey);
     if (currentPlot) buildFlowerPlot(currentPlot, {});
@@ -378,8 +661,7 @@ function setupModal() {
 
   if (intentionallyEmptyPlotCheckbox) {
     intentionallyEmptyPlotCheckbox.addEventListener("change", () => {
-      const isIntentionallyEmptyPlot = intentionallyEmptyPlotCheckbox.checked;
-      applyEmptyPlotModeUI(isIntentionallyEmptyPlot);
+      applyEmptyPlotModeUI(!!intentionallyEmptyPlotCheckbox.checked);
     });
   }
 }
@@ -390,6 +672,8 @@ function applyEmptyPlotModeUI(isIntentionallyEmpty) {
   patternSelect.disabled = isIntentionallyEmpty;
 }
 
+// Add a tooltip somewhere that informs the user
+
 function openCellModal(cell, key) {
   lastFocus = document.activeElement;
   currentPlot = cell;
@@ -398,6 +682,29 @@ function openCellModal(cell, key) {
   const saved = JSON.parse(localStorage.getItem(key) || "{}");
   const isIntentionallyEmptyPlot = !!saved.isIntentionallyEmptyPlot;
 
+  // Biome-aware species options
+  const biome = biomeFromCellKey(key);
+  const allowedSpecies = speciesForBiome(biome);
+  flowerSelect.innerHTML = renderSpeciesOptions(allowedSpecies);
+
+  // If a previously-saved species is now disallowed, inject a visible placeholder so it still shows
+  if (saved.flowerNameCode) {
+    const stillAllowed = allowedSpecies.some(
+      (species) => species.code === saved.flowerNameCode
+    );
+    if (!stillAllowed) {
+      const opt = document.createElement("option");
+      opt.value = saved.flowerNameCode;
+      opt.textContent = `⚠ ${
+        saved.flowerName || saved.flowerNameCode
+      } (not allowed in ${biome || "this area"})`;
+      opt.dataset.name = saved.flowerName || saved.flowerNameCode;
+      opt.className = "option-not-allowed";
+      flowerSelect.appendChild(opt);
+    }
+  }
+
+  // Apply saved values after options exist
   setSelectByValue(colorSelect, saved.colorHex || "");
   setSelectByValue(flowerSelect, saved.flowerNameCode || "");
   setSelectByValue(patternSelect, saved.patternName || "");
@@ -414,9 +721,9 @@ function openCellModal(cell, key) {
   errorElement.textContent = "";
   flowerModal.setAttribute("aria-hidden", "false");
 
-  setTimeout(
-    () => (isIntentionallyEmptyPlot ? plotNotes : colorSelect).focus(),
-    0
+  // Defer focus one frame for smoother paint
+  requestAnimationFrame(() =>
+    (isIntentionallyEmptyPlot ? plotNotes : colorSelect).focus()
   );
 }
 
@@ -427,31 +734,38 @@ function closeCellModal() {
   currentKey = null;
 }
 
-function setSelectByValue(selectEl, value) {
-  if (!value) {
-    selectEl.value = "";
-    return;
-  }
-  const match = [...selectEl.options].find((o) => o.value === value);
-  selectEl.value = match ? value : "";
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   setupModal();
+
+  // Render grids
   renderMany([
-    { el: "#fields-west", rows: fields_west, prefix: "fields-west" },
-    { el: "#fields-west-mini", rows: fields_mini, prefix: "fields-west-mini" },
-    { el: "#fields-east", rows: fields_east, prefix: "fields-east" },
+    { el: "#fields-west", rows: fieldsWest, prefix: "fields-west" },
+    { el: "#fields-west-mini", rows: fieldsMini, prefix: "fields-west-mini" },
+    { el: "#fields-east", rows: fieldsEast, prefix: "fields-east" },
   ]);
 
+  // Single delegated click listener for all cells (no per-cell listeners)
+  document.addEventListener(
+    "click",
+    (event) => {
+      const target = event.target.closest(".cell");
+      if (!target) return;
+      const key = target.dataset.key;
+      if (!key) return;
+      openCellModal(target, key);
+    },
+    { passive: true }
+  );
+
+  // Clear buttons
   bindClearBtn(
     "#clear-fields-west",
     ["fields-west", "fields-west-mini"],
     [
-      { el: "#fields-west", rows: fields_west, prefix: "fields-west" },
+      { el: "#fields-west", rows: fieldsWest, prefix: "fields-west" },
       {
         el: "#fields-west-mini",
-        rows: fields_mini,
+        rows: fieldsMini,
         prefix: "fields-west-mini",
       },
     ]
@@ -460,6 +774,6 @@ document.addEventListener("DOMContentLoaded", () => {
   bindClearBtn(
     "#clear-east",
     ["fields-east"],
-    [{ el: "#fields-east", rows: fields_east, prefix: "fields-east" }]
+    [{ el: "#fields-east", rows: fieldsEast, prefix: "fields-east" }]
   );
 });
