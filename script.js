@@ -661,7 +661,21 @@ function setupModal() {
 
   if (intentionallyEmptyPlotCheckbox) {
     intentionallyEmptyPlotCheckbox.addEventListener("change", () => {
-      applyEmptyPlotModeUI(!!intentionallyEmptyPlotCheckbox.checked);
+      const isChecked = !!intentionallyEmptyPlotCheckbox.checked;
+      applyEmptyPlotModeUI(isChecked);
+
+      // Close & save immediately when turning ON (true).
+      // Stay open (no save) when turning OFF (false).
+      if (!currentKey || !currentPlot) return;
+      if (isChecked) {
+        const notes = (plotNotes.value || "").trim().slice(0, max_notes_chars);
+        const payload = { isIntentionallyEmptyPlot: true, notes };
+        try {
+          localStorage.setItem(currentKey, JSON.stringify(payload));
+        } catch {}
+        buildFlowerPlot(currentPlot, payload);
+        closeCellModal();
+      }
     });
   }
 }
