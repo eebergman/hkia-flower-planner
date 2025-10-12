@@ -270,6 +270,12 @@ const areaBiomeIndex = {
   "fields-west-mini": "Meadow",
   "plaza-garden": "Meadow",
   "overlook-near": "Meadow",
+  "overlook-far": "Meadow",
+  "temple-corner": "Meadow",
+  "meadow-corral": "Meadow",
+  "gazebo-north": "Meadow",
+  "gazebo-west": "Meadow",
+  "gazebo-path-east": "Meadow",
 
   // Add Resort areas when you add those grids:
   // "hopscotch-islands": "Resort",
@@ -334,9 +340,71 @@ const plazaGarden = [
 
 const overlookNear = [
   /*       123456789012345
-  /* A */ "100000000000001",
-  /* B */ "000000000000000",
-  /* C */ "111000000000011",
+  /* A */ "011111111111110",
+  /* B */ "111111111111111",
+  /* C */ "000111111111110",
+];
+
+const overlookFar = [
+  /*       12345678
+  /* A */ "01000000",
+  /* B */ "11100010",
+  /* C */ "11111111",
+  /* D */ "11111111",
+  /* E */ "00111110",
+];
+
+const templeCorner = [
+  /*       1234567
+  /* A */ "1111000",
+  /* B */ "1111100",
+  /* C */ "0111110",
+  /* D */ "0111110",
+  /* E */ "0111110",
+  /* F */ "1111100",
+  /* G */ "0111110",
+  /* H */ "0011111",
+  /* I */ "0000111",
+];
+
+const meadowCorral = [
+  /*       1234
+  /* A */ "1110",
+  /* B */ "0011",
+];
+
+const gazeboNorth = [
+  /*       12345678901234567890 */
+  /* A */ "00000000011111000000",
+  /* B */ "00000001111111100000",
+  /* C */ "00000111111111110000",
+  /* D */ "00011111111111111100",
+  /* E */ "00111111000000111110",
+  /* F */ "01111110000000011110",
+  /* G */ "11111100000000001111",
+  /* H */ "11111000000000000111",
+];
+
+const gazeboWest = [
+  /*       12345678901 */
+  /* A */ "11111100000",
+  /* B */ "11111100000",
+  /* C */ "01111110000",
+  /* D */ "00111111000",
+  /* E */ "00011111100",
+  /* F */ "00001111110",
+  /* G */ "00000111111",
+  /* H */ "00000000011",
+];
+
+const gazeboPathEast = [
+  /*       123456789 */
+  /* A */ "111111100",
+  /* B */ "111111111",
+  /* C */ "011111111",
+  /* D */ "001111110",
+  /* E */ "001111100",
+  /* F */ "000111000",
 ];
 
 function widestRowLength(rows) {
@@ -686,7 +754,7 @@ function applyEmptyPlotModeUI(isIntentionallyEmpty) {
   patternSelect.disabled = isIntentionallyEmpty;
 }
 
-// Add a tooltip somewhere that informs the user
+// Add a tooltip somewhere that informs the user why only some flowers show up.
 
 function openCellModal(cell, key) {
   lastFocus = document.activeElement;
@@ -756,6 +824,18 @@ document.addEventListener("DOMContentLoaded", () => {
     { el: "#fields-west", rows: fieldsWest, prefix: "fields-west" },
     { el: "#fields-west-mini", rows: fieldsMini, prefix: "fields-west-mini" },
     { el: "#fields-east", rows: fieldsEast, prefix: "fields-east" },
+    { el: "#plaza-garden", rows: plazaGarden, prefix: "plaza-garden" },
+    { el: "#overlook-near", rows: overlookNear, prefix: "overlook-near" },
+    { el: "#overlook-far", rows: overlookFar, prefix: "overlook-far" },
+    { el: "#temple-corner", rows: templeCorner, prefix: "temple-corner" },
+    { el: "#meadow-corral", rows: meadowCorral, prefix: "meadow-corral" },
+    { el: "#gazebo-north", rows: gazeboNorth, prefix: "gazebo-north" },
+    { el: "#gazebo-west", rows: gazeboWest, prefix: "gazebo-west" },
+    {
+      el: "#gazebo-path-east",
+      rows: gazeboPathEast,
+      prefix: "gazebo-path-east",
+    },
   ]);
 
   // Single delegated click listener for all cells (no per-cell listeners)
@@ -789,5 +869,59 @@ document.addEventListener("DOMContentLoaded", () => {
     "#clear-east",
     ["fields-east"],
     [{ el: "#fields-east", rows: fieldsEast, prefix: "fields-east" }]
+  );
+
+  bindClearBtn(
+    "#clear-plaza-garden",
+    ["plaza-garden"],
+    [{ el: "#plaza-garden", rows: plazaGarden, prefix: "plaza-garden" }]
+  );
+
+  bindClearBtn(
+    "#clear-overlook-near",
+    ["overlook-near"],
+    [{ el: "#overlook-near", rows: overlookNear, prefix: "overlook-near" }]
+  );
+
+  bindClearBtn(
+    "#clear-overlook-far",
+    ["overlook-far"],
+    [{ el: "#overlook-far", rows: overlookFar, prefix: "overlook-far" }]
+  );
+
+  bindClearBtn(
+    "#clear-temple-corner",
+    ["temple-corner"],
+    [{ el: "#temple-corner", rows: templeCorner, prefix: "temple-corner" }]
+  );
+
+  bindClearBtn(
+    "#clear-meadow-corral",
+    ["meadow-corral"],
+    [{ el: "#meadow-corral", rows: meadowCorral, prefix: "meadow-corral" }]
+  );
+
+  bindClearBtn(
+    "#clear-gazebo-north",
+    ["gazebo-north"],
+    [{ el: "#gazebo-north", rows: gazeboNorth, prefix: "gazebo-north" }]
+  );
+
+  bindClearBtn(
+    "#clear-gazebo-west",
+    ["gazebo-west"],
+    [{ el: "#gazebo-west", rows: gazeboWest, prefix: "gazebo-west" }]
+  );
+
+  bindClearBtn(
+    "#clear-gazebo-path-east",
+    ["gazebo-path-east"],
+    [
+      {
+        el: "#gazebo-path-east",
+        rows: gazeboPathEast,
+        prefix: "gazebo-path-east",
+      },
+    ]
   );
 });

@@ -33,6 +33,7 @@ html {
   --eighteen-px: 1.125rem;
   --twenty-four-px: 1.5rem;
   --thirty-px: 1.875rem;
+  --thirty-two: 2rem;
   --thirty-four-px: 2.125rem;
   --fifty-sixty-px: 3.5rem;
   --eighty-px: 5rem;
@@ -286,4 +287,20 @@ select:disabled {
 .option-not-allowed {
   font-style: italic;
   opacity: 0.85;
+}
+
+.site-footer {
+  border-top: var(--one-px) solid var(--light-gray);
+  color: var(--navy);
+  display: flex;
+  font-size: var(--fourteen-px);
+  justify-content: center;
+  margin-top: var(--thirty-two);
+  padding: var(--sixteen-px) 0;
+}
+
+.site-footer p {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
 }
