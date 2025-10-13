@@ -7,10 +7,12 @@ html {
   --white: #ffffff;
   --dark-white: #f8f8f8;
   --light-gray: #dcdcdc;
+  --gray: #c3c0c0;
   --dark-gray: #666;
   --black: #1b1b1b;
   --red: #c12a3d;
   --pink: #eea5b3;
+  --meadows-pink: #d275b6;
   --brown: #9b590d;
   --dark-brown: #744a1a;
   --spring-green: #93b73b;
@@ -54,6 +56,7 @@ body {
   z-index: 1000;
   background: var(--pink);
   color: var(--black);
+  border: var(--one-px) solid var(--gray);
   box-shadow: 0 var(--one-px) 0 rgba(0, 0, 0, 0.12),
     inset 0 var(--neg-one-px) 0 rgba(0, 0, 0, 0.06);
 }
@@ -68,6 +71,12 @@ body {
   font-weight: 700;
 }
 
+@supports (backdrop-filter: blur(6px)) {
+  header.site-header {
+    backdrop-filter: blur(6px);
+  }
+}
+
 .wrap {
   max-width: min(1200px, 95vw);
   margin: var(--twenty-four-px) auto var(--eighty-px);
@@ -80,8 +89,6 @@ body {
   margin: var(--ten-px) 0;
 }
 .panel > summary {
-  background: var(--pink);
-  color: var(--black);
   padding: var(--twelve-px);
   border-radius: var(--fourteen-px);
   cursor: pointer;
@@ -114,8 +121,80 @@ body {
   border-radius: 0 0 var(--fourteen-px) var(--fourteen-px);
 }
 
-.fields-west > summary {
-  background: var(--pink);
+.panel .panel-body {
+  position: relative;
+}
+.panel .panel-body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  pointer-events: none;
+}
+.panel .panel-body:hover {
+  cursor: pointer;
+}
+.panel .panel-body:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  pointer-events: none;
+}
+
+.meadows-summary {
+  background-color: var(--meadows-pink);
+}
+
+.greenhouse-summary {
+  background-color: #60752a;
+  color: #dcdcdc;
+}
+.resort-summary {
+  background-color: #2b72b7;
+  color: var(--white);
+}
+.swamp-summary {
+  background-color: #419495;
+}
+.gemstone-summary {
+  background-color: #a54724;
+  color: var(--white);
+}
+.hothead-summary {
+  background-color: #492266;
+  color: var(--white);
+}
+.reef-summary {
+  background-color: #72d0f1;
+}
+.cloud-summary {
+  background-color: #a79ccc;
+}
+.extremophiles-summary {
+  background-color: #871603;
+  color: var(--white);
+}
+.caldera-summary {
+  background-color: #fb7c2a;
+}
+.peak-summary {
+  background-color: #ffffff;
+}
+.caves-summary {
+  background-color: #915f50;
+  color: var(--white);
+}
+.moon-summary {
+  background-color: #d7e4a3;
+}
+.wheatflour-summary {
+  background-color: #e8cc5c;
 }
 
 /* Toolbar */
@@ -130,10 +209,14 @@ body {
   border: 0;
   padding: var(--ten-px) var(--twelve-px);
   border-radius: var(--ten-px);
-  background: var(--white);
+  background: var(--light-gray);
   box-shadow: 0 var(--one-px) 0 rgba(0, 0, 0, 0.12),
     inset 0 0 0 var(--one-px) var(--dark-white);
   cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: var(--gray);
 }
 
 .toolbar small {
@@ -303,4 +386,16 @@ select:disabled {
   display: flex;
   justify-content: space-between;
   width: 40rem;
+}
+
+/* Make the background fun */
+body {
+  background: linear-gradient(
+    160deg,
+    #dff6d0 0%,
+    #b7e3a0 25%,
+    #93b73b 60%,
+    #f3e7d1 100%
+  );
+  background-attachment: fixed;
 }

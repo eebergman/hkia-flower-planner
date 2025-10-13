@@ -17,21 +17,28 @@
 	<div class="wrap">
 
 		<details class="panel meadows" open data-id="meadows">
-			<summary>Meadows</summary>
+			<summary class="meadows-summary">Merry Meadows</summary>
 			<div class="panel-body">
+				<div class="toolbar">
+					<form
+						action="https://hellokittyislandadventure.wiki.gg/images/Flower_Patch_Chart_-_Merry_Meadows.png?a7fd1c"
+						method="get" target="_blank">
+						<button type="submit">Merry Meadows Flower Patches Maps</button>
+					</form>
+				</div>
 
 				<details class="panel fields-west" open data-id="fields-west">
-					<summary>1. Fields West and 2. Mini</summary>
+					<summary class="meadows-summary">1. Fields West and 2. Mini</summary>
 					<div class="panel-body">
 						<div id="fields-west" class="grid" aria-label="Fields West and Mini"></div>
 						<div class="toolbar">
-							<button id="clear-fields-west">Clear West and Mini Data</button>
+							<button id="clear-fields-west">Clear All West and Mini Data</button>
 							<small>Tip: click a cell to get started.</small>
 						</div>
 
 						<!-- Nested “Mini” sub-panel that holds the small floating grid -->
 						<details class="panel" data-id="fields-west-mini">
-							<summary>Mini</summary>
+							<summary class="meadows-summary">Mini</summary>
 							<div class="panel-body">
 								<div id="fields-west-mini" class="field-mini" aria-label="Fields West • Mini"></div>
 							</div>
@@ -40,17 +47,17 @@
 				</details>
 
 				<details class="panel" data-id="fields-east">
-					<summary>3. Fields East</summary>
+					<summary class="meadows-summary">3. Fields East</summary>
 					<div class="panel-body">
 						<div id="fields-east" class="grid" aria-label="Fields East"></div>
 						<div class="toolbar">
-							<button id="clear-east">Clear All East Data</button>
+							<button id="clear-east">Clear All East Fields Data</button>
 						</div>
 					</div>
 				</details>
 
 				<details class="panel" data-id="plaza-garden">
-					<summary>4. Plaza Garden</summary>
+					<summary class="meadows-summary">4. Plaza Garden</summary>
 					<div class="panel-body">
 						<div id="plaza-garden" class="grid" aria-label="Plaza Garden"></div>
 						<div class="toolbar">
@@ -60,7 +67,7 @@
 				</details>
 
 				<details class="panel" data-id="overlook-near">
-					<summary>5. Overlook Greenhouse Front</summary>
+					<summary class="meadows-summary">5. Overlook Greenhouse Front</summary>
 					<div class="panel-body">
 						<div id="overlook-near" class="grid" aria-label="Overlook Near"></div>
 						<div class="toolbar">
@@ -70,7 +77,7 @@
 				</details>
 
 				<details class="panel" data-id="overlook-far">
-					<summary>6. Overlook Puzzle Front</summary>
+					<summary class="meadows-summary">6. Overlook Puzzle Front</summary>
 					<div class="panel-body">
 						<div id="overlook-far" class="grid" aria-label="Overlook Far"></div>
 						<div class="toolbar">
@@ -80,7 +87,7 @@
 				</details>
 
 				<details class="panel" data-id="temple-corner">
-					<summary>7. Temple Corner</summary>
+					<summary class="meadows-summary">7. Temple Corner</summary>
 					<div class="panel-body">
 						<div id="temple-corner" class="grid" aria-label="Temple Corner"></div>
 						<div class="toolbar">
@@ -90,7 +97,7 @@
 				</details>
 
 				<details class="panel" data-id="meadow-corral">
-					<summary>8. Meadow Corral</summary>
+					<summary class="meadows-summary">8. Meadow Corral</summary>
 					<div class="panel-body">
 						<div id="meadow-corral" class="grid" aria-label="Meadow Corral"></div>
 						<div class="toolbar">
@@ -100,7 +107,7 @@
 				</details>
 
 				<details class="panel" data-id="gazebo-north">
-					<summary>9. Gazebo North</summary>
+					<summary class="meadows-summary">9. Gazebo North</summary>
 					<div class="panel-body">
 						<div id="gazebo-north" class="grid" aria-label="Gazebo North"></div>
 						<div class="toolbar">
@@ -110,7 +117,7 @@
 				</details>
 
 				<details class="panel" data-id="gazebo-west">
-					<summary>10. Gazebo Path West</summary>
+					<summary class="meadows-summary">10. Gazebo Path West</summary>
 					<div class="panel-body">
 						<div id="gazebo-west" class="grid" aria-label="Gazebo Path West"></div>
 						<div class="toolbar">
@@ -120,7 +127,7 @@
 				</details>
 
 				<details class="panel" data-id="gazebo-path-east">
-					<summary>11. Gazebo Path East</summary>
+					<summary class="meadows-summary">11. Gazebo Path East</summary>
 					<div class="panel-body">
 						<div id="gazebo-path-east" class="grid" aria-label="Gazebo Path East"></div>
 						<div class="toolbar">
@@ -130,9 +137,356 @@
 				</details>
 
 				<details class="panel" data-id="greenhouse">
-					<summary>Greenhouse</summary>
+					<summary class="greenhouse-summary">Greenhouse</summary>
 					<div class="panel-body">
 						<div class="placeholder">Coming soon</div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+		<!-- Seaside Resort -->
+		<details class="panel" data-id="seaside-resort">
+			<summary class="resort-summary">Seaside Resort</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="hopscotch-islands">
+					<summary class="resort-summary">Hopscotch Islands</summary>
+					<div class="panel-body">
+						<div id="hopscotch-islands" class="grid" aria-label="Hopscotch Islands"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-topmost-west">
+					<summary class="resort-summary">Resort Topmost West</summary>
+					<div class="panel-body">
+						<div id="resort-topmost-west" class="grid" aria-label="Resort Topmost West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-upper-west">
+					<summary class="resort-summary">Resort Upper West</summary>
+					<div class="panel-body">
+						<div id="resort-upper-west" class="grid" aria-label="Resort Upper West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-middle-west">
+					<summary class="resort-summary">Resort Middle West</summary>
+					<div class="panel-body">
+						<div id="resort-middle-west" class="grid" aria-label="Resort Middle West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-lower-west">
+					<summary class="resort-summary">Resort Lower West</summary>
+					<div class="panel-body">
+						<div id="resort-lower-west" class="grid" aria-label="Resort Lower West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-cabin">
+					<summary class="resort-summary">Resort Cabin</summary>
+					<div class="panel-body">
+						<div id="resort-cabin" class="grid" aria-label="Resort Cabin"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-cabin-pond">
+					<summary class="resort-summary">Resort Cabin Pond</summary>
+					<div class="panel-body">
+						<div id="resort-cabin-pond" class="grid" aria-label="Resort Cabin Pond"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-sign">
+					<summary class="resort-summary">Resort Sign</summary>
+					<div class="panel-body">
+						<div id="resort-sign" class="grid" aria-label="Resort (Gudetama) Sign"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-cliff-bottom">
+					<summary class="resort-summary">Resort Cliff Bottom</summary>
+					<div class="panel-body">
+						<div id="resort-cliff-bottom" class="grid" aria-label="Resort Cliff Bottom"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-cliff-top">
+					<summary class="resort-summary">Resort Cliff Top</summary>
+					<div class="panel-body">
+						<div id="resort-cliff-top" class="grid" aria-label="Resort Cliff Top"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="resort-gate">
+					<summary class="resort-summary">Resort Gate</summary>
+					<div class="panel-body">
+						<div id="resort-gate" class="grid" aria-label="Resort Gate"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="cozy-islands">
+					<summary class="resort-summary">Cozy Islands</summary>
+					<div class="panel-body">
+						<div id="cozy-islands" class="grid" aria-label="Cozy Islands"></div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+
+		<!-- Spooky Swamp -->
+		<details class="panel" data-id="spooky-swamp">
+			<summary class="swamp-summary">Spooky Swamp</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="ghost-ride">
+					<summary class="swamp-summary">Ghost Ride</summary>
+					<div class="panel-body">
+						<div id="ghost-ride" class="grid" aria-label="Ghost Ride"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="nature-reserve">
+					<summary class="swamp-summary">Nature Reserve</summary>
+					<div class="panel-body">
+						<div id="nature-reserve" class="grid" aria-label="Nature Reserve"></div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+
+		<!-- Gemstone Mountain -->
+		<details class="panel" data-id="gemstone-mountain">
+			<summary class="gemstone-summary">Gemstone Mountain</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="oasis-west-north">
+					<summary class="gemstone-summary">Oasis West: North</summary>
+					<div class="panel-body">
+						<div id="oasis-west-north" class="grid" aria-label="Oasis West: North"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="oasis-west-south">
+					<summary class="gemstone-summary">Oasis West: South</summary>
+					<div class="panel-body">
+						<div id="oasis-west-south" class="grid" aria-label="Oasis West: South"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="oasis-east">
+					<summary class="gemstone-summary">Oasis East</summary>
+					<div class="panel-body">
+						<div id="oasis-east" class="grid" aria-label="Oasis East"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="peak-trail">
+					<summary class="gemstone-summary">Peak Trail</summary>
+					<div class="panel-body">
+						<div id="peak-trail" class="grid" aria-label="Peak Trail"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="mine-entrance-pond">
+					<summary class="gemstone-summary">Mine Entrance Pond</summary>
+					<div class="panel-body">
+						<div id="mine-entrance-pond" class="grid" aria-label="Mine Entrance Pond"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="mine-entrance-town">
+					<summary class="gemstone-summary">Mine Entrance Town</summary>
+					<div class="panel-body">
+						<div id="mine-entrance-town" class="grid" aria-label="Mine Entrance Town"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="town-crafting-table">
+					<summary class="gemstone-summary">Town Crafting Table</summary>
+					<div class="panel-body">
+						<div id="town-crafting-table" class="grid" aria-label="Town Crafting Table"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="cabins-west">
+					<summary class="gemstone-summary">Cabins West</summary>
+					<div class="panel-body">
+						<div id="cabins-west" class="grid" aria-label="Cabins West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="deadwood-forest">
+					<summary class="gemstone-summary">Deadwood Forest</summary>
+					<div class="panel-body">
+						<div id="deadwood-forest" class="grid" aria-label="Deadwood Forest"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="cabin-one-north">
+					<summary class="gemstone-summary">Cabin 1 North</summary>
+					<div class="panel-body">
+						<div id="cabin-one-north" class="grid" aria-label="Cabin 1 North"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="cabin-one-south">
+					<summary class="gemstone-summary">Cabin 1 South</summary>
+					<div class="panel-body">
+						<div id="cabin-one-south" class="grid" aria-label="Cabin 1 South"></div>
+					</div>
+				</details>
+			</div>
+		</details>
+
+		<!-- Mount Hothead -->
+		<details class="panel" data-id="mount-hothead">
+			<summary class="hothead-summary">Mount Hothead</summary>
+			<div class="panel-body">
+				<details class="panel" data-id="ruins-west">
+					<summary class="hothead-summary">Ruins West</summary>
+					<div class="panel-body">
+						<div id="ruins-west" class="grid" aria-label="Ruins West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="volcano-cabin-west">
+					<summary class="hothead-summary">Cabin West</summary>
+					<div class="panel-body">
+						<div id="volcano-cabin-west" class="grid" aria-label="Cabin West"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="pizza-cliff-bottom">
+					<summary class="hothead-summary">Pizza Cliff Bottom</summary>
+					<div class="panel-body">
+						<div id="pizza-cliff-bottom" class="grid" aria-label="Pizza Cliff Bottom"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="pizza-cliff-top">
+					<summary class="hothead-summary">Pizza Cliff Top</summary>
+					<div class="panel-body">
+						<div id="pizza-cliff-top" class="grid" aria-label="Pizza Cliff Top"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="hot-springs-bridge">
+					<summary class="hothead-summary">Hot Springs Bridge</summary>
+					<div class="panel-body">
+						<div id="hot-springs-bridge" class="grid" aria-label="Hot Springs Bridge"></div>
+					</div>
+				</details>
+			</div>
+		</details>
+
+		<!-- Rainbow Reef -->
+		<details class="panel" data-id="rainbow-reef">
+			<summary class="reef-summary">Rainbow Reef</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="club-south">
+					<summary class="reef-summary">Club South</summary>
+					<div class="panel-body">
+						<div id="club-south" class="grid" aria-label="Club South"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="club-east">
+					<summary class="reef-summary">Club East</summary>
+					<div class="panel-body">
+						<div id="club-east" class="grid" aria-label="Club East"></div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+
+		<!-- Cloud Island -->
+		<details class="panel" data-id="cloud-island">
+			<summary class="cloud-summary">Cloud Island</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="cloud-outer-cabin">
+					<summary class="cloud-summary">Outer Cabin</summary>
+					<div class="panel-body">
+						<div id="cloud-outer-cabin" class="grid" aria-label="Cloud Outer Cabin"></div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+
+		<!-- Extremophiles (nested groups) -->
+		<details class="panel" data-id="extremophiles">
+			<summary class="extremophiles-summary">Extremophiles</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="caldera">
+					<summary class="caldera-summary">Caldera</summary>
+					<div class="panel-body">
+						<div id="caldera-mailbox" class="grid" aria-label="Caldera Mailbox"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="icy-peak">
+					<summary class="peak-summary">Icy Peak</summary>
+					<div class="panel-body">
+						<div id="icy-peak-summit" class="grid" aria-label="Icy Peak Summit"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="crystal-caves">
+					<summary class="caves-summary">Crystal Caves</summary>
+					<div class="panel-body">
+						<div id="crystal-caves" class="grid" aria-label="Crystal Caves"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="the-moon">
+					<summary class="moon-summary">The Moon</summary>
+					<div class="panel-body">
+						<div id="the-moon" class="grid" aria-label="The Moon"></div>
+					</div>
+				</details>
+
+			</div>
+		</details>
+
+		<!-- Wheatflour Wonderland -->
+		<details class="panel" data-id="wheatflour-wonderland">
+			<summary class="wheatflour-summary">Wheatflour Wonderland</summary>
+			<div class="panel-body">
+
+				<details class="panel" data-id="wheatflower-upper-left">
+					<summary class="wheatflour-summary">Upper Left</summary>
+					<div class="panel-body">
+						<div id="wheatflower-upper-left" class="grid" aria-label="Wheatflower Upper Left"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="wheatflower-upper-right">
+					<summary class="wheatflour-summary">Upper Right</summary>
+					<div class="panel-body">
+						<div id="wheatflower-upper-right" class="grid" aria-label="Wheatflower Upper Right"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="wheatflower-lower-left">
+					<summary class="wheatflour-summary">Lower Left</summary>
+					<div class="panel-body">
+						<div id="wheatflower-lower-left" class="grid" aria-label="Wheatflower Lower Left"></div>
+					</div>
+				</details>
+
+				<details class="panel" data-id="wheatflower-lower-right">
+					<summary class="wheatflour-summary">Lower Right</summary>
+					<div class="panel-body">
+						<div id="wheatflower-lower-right" class="grid" aria-label="Wheatflower Lower Right"></div>
 					</div>
 				</details>
 
