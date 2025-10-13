@@ -134,7 +134,7 @@ body {
   pointer-events: none;
 }
 .panel .panel-body:hover {
-  cursor: pointer;
+  cursor: auto;
 }
 .panel .panel-body:hover::after {
   content: "";
