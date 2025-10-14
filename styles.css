@@ -39,7 +39,6 @@ html {
     --eighteen-px: 1.125rem;
     --twenty-four-px: 1.5rem;
     --thirty-px: 1.875rem;
-    --thirty-two: 2rem;
     --thirty-four-px: 2.125rem;
     --fifty-sixty-px: 3.5rem;
     --eighty-px: 5rem;
@@ -60,7 +59,6 @@ body {
     z-index: 1000;
     background: var(--pink);
     color: var(--black);
-    border: var(--one-px) solid var(--gray);
     box-shadow: 0 var(--one-px) 0 rgba(0, 0, 0, 0.12),
         inset 0 var(--neg-one-px) 0 rgba(0, 0, 0, 0.06);
 }
@@ -128,7 +126,7 @@ body {
 .panel-body {
     padding: var(--eight-px) var(--six-px) var(--six-px) var(--fourteen-px);
     margin-top: var(--six-px);
-    border-left: var(--two-px) solid #e9e9e9;
+    border-left: var(--two-px) solid var(--light-gray);
     border-radius: 0 0 var(--fourteen-px) var(--fourteen-px);
 }
 
@@ -283,19 +281,23 @@ body {
 .modal[aria-hidden='true'] {
     display: none;
 }
+
 .modal[aria-hidden='false'] {
     display: block;
 }
+
 .modal {
     position: fixed;
     inset: 0;
     z-index: 1000;
 }
+
 .modal-backdrop {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.35);
 }
+
 .modal-dialog {
     position: relative;
     max-width: 420px;
@@ -305,15 +307,18 @@ body {
     box-shadow: 0 var(--ten-px) var(--white) rgba(0, 0, 0, 0.2);
     padding: var(--sixteen-px);
 }
+
 .modal-dialog h2 {
     margin: 0 0 var(--ten-px);
     font-size: var(--eighteen-px);
 }
+
 .form-row {
     display: grid;
     gap: var(--six-px);
     margin-bottom: var(--ten-px);
 }
+
 .form-row .checkbox {
     display: inline-flex;
     align-items: center;
@@ -331,11 +336,13 @@ body {
     margin: var(--six-px) 0 0;
     min-height: var(--sixteen-px);
 }
+
 .modal-actions {
     display: flex;
     justify-content: space-between;
     margin-top: var(--twelve-px);
 }
+
 .modal-actions button {
     padding: var(--eight-px) var(--twelve-px);
     border-radius: var(--eight-px);

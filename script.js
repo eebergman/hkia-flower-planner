@@ -373,7 +373,7 @@ const fieldsWest = [
     /* J */ '00000------000',
 ];
 
-const fieldsMini = ['---', '---'];
+const fieldsWestMini = ['---', '---'];
 
 const fieldsEast = [
     /*       1234567890-23 */
@@ -909,6 +909,7 @@ const wheatflowerLowerRight = [
     /* J */ '------------',
 ];
 
+/* Helpers */
 // Safer max-width helper used by renderers
 function widestRowLength(rows) {
     if (!Array.isArray(rows) || rows.length === 0) {
@@ -926,10 +927,7 @@ function getRowsFor(prefix) {
     const camel = toCamelCasePrefix(prefix);
     const rows = window[camel];
     if (!Array.isArray(rows)) {
-        console.warn(
-            `Rows not found for "${prefix}" (looked for window.${camel}).`
-        );
-        return [];
+        return null;
     }
     return rows;
 }
@@ -956,6 +954,29 @@ function getSavedStateMap(prefix) {
         }
     }
     return map;
+}
+
+function sanityCheckGrids() {
+    const gridIds = Array.from(document.querySelectorAll('.grid')).map(
+        (el) => el.id
+    );
+    const problems = [];
+    gridIds.forEach((id) => {
+        const rows = getRowsFor(id);
+        if (!rows)
+            problems.push(
+                `Missing rows array for "${id}" (expected window.${toCamelCasePrefix(
+                    id
+                )})`
+            );
+        const gridEl = document.getElementById(id);
+        if (!gridEl) problems.push(`Grid element not found for id "${id}"`);
+    });
+    if (problems.length) {
+        console.groupCollapsed('Garden Planner – Sanity Check');
+        problems.forEach((msg) => console.warn(msg));
+        console.groupEnd();
+    }
 }
 
 function bindClearButton(button, prefixes, renders) {
@@ -1349,6 +1370,7 @@ function closeCellModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
     setupModal();
+    sanityCheckGrids();
 
     // Render flower patches
     // IDs present in index.html (Meadows + other biomes)
@@ -1445,7 +1467,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { el: '#fields-west', rows: fieldsWest, prefix: 'fields-west' },
             {
                 el: '#fields-west-mini',
-                rows: fieldsMini,
+                rows: fieldsWestMini,
                 prefix: 'fields-west-mini',
             },
         ]
