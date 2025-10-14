@@ -264,83 +264,6 @@ const flowerSpecies = [
     },
 ];
 
-// Map the grid areas
-const areaBiomeIndex = {
-    // Meadow (existing)
-    'fields-west': 'Meadow',
-    'fields-east': 'Meadow',
-    'fields-west-mini': 'Meadow',
-    'plaza-garden': 'Meadow',
-    'overlook-near': 'Meadow',
-    'overlook-far': 'Meadow',
-    'temple-corner': 'Meadow',
-    'meadow-corral': 'Meadow',
-    'gazebo-north': 'Meadow',
-    'gazebo-west': 'Meadow',
-    'gazebo-path-east': 'Meadow',
-
-    // Seaside Resort
-    'hopscotch-islands': 'Resort',
-    'resort-topmost-west': 'Resort',
-    'resort-upper-west': 'Resort',
-    'resort-middle-west': 'Resort',
-    'resort-lower-west': 'Resort',
-    'resort-cabin': 'Resort',
-    'resort-cabin-pond': 'Resort',
-    'resort-sign': 'Resort',
-    'resort-cliff-bottom': 'Resort',
-    'resort-cliff-top': 'Resort',
-    'resort-gate': 'Resort',
-    'cozy-islands': 'Resort',
-
-    // Spooky Swamp
-    'ghost-ride': 'Swamp',
-    'nature-reserve': 'Swamp',
-
-    // Gemstone Mountain
-    'oasis-west-north': 'Gemstone',
-    'oasis-west-south': 'Gemstone',
-    'oasis-east': 'Gemstone',
-    'peak-trail': 'Gemstone',
-    'mine-entrance-pond': 'Gemstone',
-    'mine-entrance-town': 'Gemstone',
-    'town-crafting-table': 'Gemstone',
-    'cabins-west': 'Gemstone',
-    'deadwood-forest': 'Gemstone',
-    'cabin-one-north': 'Gemstone',
-    'cabin-one-south': 'Gemstone',
-
-    // Mount Hothead (Volcano)
-    'ruins-west': 'Volcano',
-    'volcano-cabin-west': 'Volcano',
-    'pizza-cliff-bottom': 'Volcano',
-    'pizza-cliff-top': 'Volcano',
-    'hot-springs-bridge': 'Volcano',
-
-    // Rainbow Reef
-    'club-south': 'Reef',
-    'club-east': 'Reef',
-
-    // Cloud Island
-    'cloud-outer-cabin': 'Cloud',
-
-    // Extremophiles (nested groups)
-    // Caldera
-    'caldera-mailbox': 'Caldera',
-    // Icy Peak
-    'icy-peak-summit': 'Peak',
-    // Crystal Caves
-    'crystal-caves': 'Caves',
-    // The Moon
-    'the-moon': 'Moon',
-
-    // Wheatflour Wonderland
-    'wheatflower-upper-left': 'Wheatflower',
-    'wheatflower-upper-right': 'Wheatflower',
-    'wheatflower-lower-left': 'Wheatflower',
-    'wheatflower-lower-right': 'Wheatflower',
-};
-
 const flowerPatterns = [
     'Ombré',
     'Glitter',
@@ -909,6 +832,286 @@ const wheatflowerLowerRight = [
     /* J */ '------------',
 ];
 
+const flowerPatchInfo = [
+    // Merry Meadows
+    {
+        el: '#fields-west',
+        rows: fieldsWest,
+        location: 'Meadow',
+    },
+    {
+        el: '#fields-west-mini',
+        rows: fieldsWestMini,
+        location: 'Meadow',
+    },
+    {
+        el: '#fields-east',
+        rows: fieldsEast,
+        location: 'Meadow',
+    },
+    {
+        el: '#plaza-garden',
+        rows: plazaGarden,
+        location: 'Meadow',
+    },
+    {
+        el: '#overlook-near',
+        rows: overlookNear,
+        location: 'Meadow',
+    },
+    {
+        el: '#overlook-far',
+        rows: overlookFar,
+        location: 'Meadow',
+    },
+    {
+        el: '#temple-corner',
+        rows: templeCorner,
+        location: 'Meadow',
+    },
+    {
+        el: '#meadow-corral',
+        rows: meadowCorral,
+        location: 'Meadow',
+    },
+    {
+        el: '#gazebo-north',
+        rows: gazeboNorth,
+        location: 'Meadow',
+    },
+    {
+        el: '#gazebo-west',
+        rows: gazeboWest,
+        location: 'Meadow',
+    },
+    {
+        el: '#gazebo-path-east',
+        rows: gazeboPathEast,
+        location: 'Meadow',
+    },
+
+    // Seaside Resort
+    {
+        el: '#hopscotch-islands',
+        rows: hopscotchIslands,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-topmost-west',
+        rows: resortTopmostWest,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-upper-west',
+        rows: resortUpperWest,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-middle-west',
+        rows: resortMiddleWest,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-lower-west',
+        rows: resortLowerWest,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-cabin',
+        rows: resortCabin,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-cabin-pond',
+        rows: resortCabinPond,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-sign',
+        rows: resortSign,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-cliff-bottom',
+        rows: resortCliffBottom,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-cliff-top',
+        rows: resortCliffTop,
+        location: 'Resort',
+    },
+    {
+        el: '#resort-gate',
+        rows: resortGate,
+        location: 'Resort',
+    },
+    {
+        el: '#cozy-islands',
+        rows: cozyIslands,
+        location: 'Resort',
+    },
+
+    // Spooky Swamp
+    {
+        el: '#ghost-ride',
+        rows: ghostRide,
+        location: 'Swamp',
+    },
+    {
+        el: '#nature-reserve',
+        rows: natureReserve,
+        location: 'Swamp',
+    },
+
+    // Gemstone Mountain
+    {
+        el: '#oasis-west-north',
+        rows: oasisWestNorth,
+        location: 'Gemstone',
+    },
+    {
+        el: '#oasis-west-south',
+        rows: oasisWestSouth,
+        location: 'Gemstone',
+    },
+    {
+        el: '#oasis-east',
+        rows: oasisEast,
+        location: 'Gemstone',
+    },
+    {
+        el: '#peak-trail',
+        rows: peakTrail,
+        location: 'Gemstone',
+    },
+    {
+        el: '#mine-entrance-pond',
+        rows: mineEntrancePond,
+        location: 'Gemstone',
+    },
+    {
+        el: '#mine-entrance-town',
+        rows: mineEntranceTown,
+        location: 'Gemstone',
+    },
+    {
+        el: '#town-crafting-table',
+        rows: townCraftingTable,
+        location: 'Gemstone',
+    },
+    {
+        el: '#cabins-west',
+        rows: cabinsWest,
+        location: 'Gemstone',
+    },
+    {
+        el: '#deadwood-forest',
+        rows: deadwoodForest,
+        location: 'Gemstone',
+    },
+    {
+        el: '#cabin-one-north',
+        rows: cabinOneNorth,
+        location: 'Gemstone',
+    },
+    {
+        el: '#cabin-one-south',
+        rows: cabinOneSouth,
+        location: 'Gemstone',
+    },
+
+    // Mount Hothead (Volcano)
+    {
+        el: '#ruins-west',
+        rows: ruinsWest,
+        location: 'Volcano',
+    },
+    {
+        el: '#volcano-cabin-west',
+        rows: volcanoCabinWest,
+        location: 'Volcano',
+    },
+    {
+        el: '#pizza-cliff-bottom',
+        rows: pizzaCliffBottom,
+        location: 'Volcano',
+    },
+    {
+        el: '#pizza-cliff-top',
+        rows: pizzaCliffTop,
+        location: 'Volcano',
+    },
+    {
+        el: '#hot-springs-bridge',
+        rows: hotSpringsBridge,
+        location: 'Volcano',
+    },
+
+    // Rainbow Reef
+    {
+        el: '#club-south',
+        rows: clubSouth,
+        location: 'Reef',
+    },
+    {
+        el: '#club-east',
+        rows: clubEast,
+        location: 'Reef',
+    },
+
+    // Cloud Island
+    {
+        el: '#cloud-outer-cabin',
+        rows: cloudOuterCabin,
+        location: 'Cloud',
+    },
+
+    // Extremophiles
+    {
+        el: '#caldera-mailbox',
+        rows: calderaMailbox,
+        location: 'Caldera',
+    },
+    {
+        el: '#icy-peak-summit',
+        rows: icyPeakSummit,
+        location: 'Peak',
+    },
+    {
+        el: '#crystal-caves',
+        rows: crystalCaves,
+        location: 'Caves',
+    },
+    {
+        el: '#the-moon',
+        rows: theMoon,
+        location: 'Moon',
+    },
+
+    // Wheatflour Wonderland
+    {
+        el: '#wheatflower-upper-left',
+        rows: wheatflowerUpperLeft,
+        location: 'Wheatflour',
+    },
+    {
+        el: '#wheatflower-upper-right',
+        rows: wheatflowerUpperRight,
+        location: 'Wheatflour',
+    },
+    {
+        el: '#wheatflower-lower-left',
+        rows: wheatflowerLowerLeft,
+        location: 'Wheatflour',
+    },
+    {
+        el: '#wheatflower-lower-right',
+        rows: wheatflowerLowerRight,
+        location: 'Wheatflour',
+    },
+];
+
 /* Helpers */
 // Safer max-width helper used by renderers
 function widestRowLength(rows) {
@@ -1091,7 +1294,11 @@ function renderGrid(container, rows, idPrefix) {
 }
 
 function renderMany(configs) {
-    for (const { el, rows, prefix } of configs) {
+    for (const { el, rows } of configs) {
+        let prefix = String(el);
+        if (prefix.charAt(0) === '#') {
+            prefix = prefix.slice(1);
+        }
         const node = typeof el === 'string' ? document.querySelector(el) : el;
         if (!node) {
             console.warn('renderMany: container not found for', el);
@@ -1115,10 +1322,18 @@ function renderMany(configs) {
     }
 })();
 
-// Pull biome from a cell key like "fields-west-3-7"
-function biomeFromCellKey(cellKey) {
-    const areaPrefix = cellKey.replace(/-\d+-\d+$/, '');
-    return areaBiomeIndex[areaPrefix] || null;
+// Pull biome from a plot key like "fields-west-3-7"
+function biomeFromPlotState(plotKey) {
+    const patchName = plotKey.replace(/-\d+-\d+$/, '');
+    let patchLocation = null;
+    flowerPatchInfo.forEach((patch) => {
+        let patchNameFromInfo = String(patch.el.slice(1));
+
+        if (patchNameFromInfo === patchName) {
+            patchLocation = patch.location;
+        }
+    });
+    return patchLocation;
 }
 
 function speciesForBiome(biome) {
@@ -1334,7 +1549,7 @@ function openCellModal(cell, key) {
     const isIntentionallyEmptyPlot = !!saved.isIntentionallyEmptyPlot;
 
     // Biome-aware species options
-    const biome = biomeFromCellKey(key);
+    const biome = biomeFromPlotState(key);
     const allowedSpecies = speciesForBiome(biome);
     flowerSelect.innerHTML = renderSpeciesOptions(allowedSpecies);
 
@@ -1391,77 +1606,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render flower patches
     // IDs present in index.html (Meadows + other biomes)
-    const gridIds = [
-        // Merry Meadows
-        'fields-west',
-        'fields-west-mini',
-        'fields-east',
-        'plaza-garden',
-        'overlook-near',
-        'overlook-far',
-        'temple-corner',
-        'meadow-corral',
-        'gazebo-north',
-        'gazebo-west',
-        'gazebo-path-east',
-        // Seaside Resort
-        'hopscotch-islands',
-        'resort-topmost-west',
-        'resort-upper-west',
-        'resort-middle-west',
-        'resort-lower-west',
-        'resort-cabin',
-        'resort-cabin-pond',
-        'resort-sign',
-        'resort-cliff-bottom',
-        'resort-cliff-top',
-        'resort-gate',
-        'cozy-islands',
-        // Spooky Swamp
-        'ghost-ride',
-        'nature-reserve',
-        // Gemstone Mountain
-        'oasis-west-north',
-        'oasis-west-south',
-        'oasis-east',
-        'peak-trail',
-        'mine-entrance-pond',
-        'mine-entrance-town',
-        'town-crafting-table',
-        'cabins-west',
-        'deadwood-forest',
-        'cabin-one-north',
-        'cabin-one-south',
-        // Mount Hothead
-        'ruins-west',
-        'volcano-cabin-west',
-        'pizza-cliff-bottom',
-        'pizza-cliff-top',
-        'hot-springs-bridge',
-        // Rainbow Reef
-        'club-south',
-        'club-east',
-        // Cloud Island
-        'cloud-outer-cabin',
-        // Extremophiles
-        'caldera-mailbox',
-        'icy-peak-summit',
-        'crystal-caves',
-        'the-moon',
-        // Wheatflour Wonderland
-        'wheatflower-upper-left',
-        'wheatflower-upper-right',
-        'wheatflower-lower-left',
-        'wheatflower-lower-right',
-    ];
 
-    const renderSpecs = gridIds.map((id) => ({
-        el: `#${id}`,
-        prefix: id,
-        rows: getRowsFor(id),
-    }));
-
-    renderMany(renderSpecs);
+    renderMany(flowerPatchInfo);
 
     // Single delegated click listener for all cells (no per-cell listeners)
     document.addEventListener(
