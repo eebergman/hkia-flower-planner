@@ -2,6 +2,10 @@ html {
     font-size: 16px; /* Just a little insanity to _try_ and ensure a nice experience using rem  */
 }
 
+:where(*, *::before, *::after) {
+    box-sizing: border-box;
+}
+
 :root {
     /* Colors */
     --white: #ffffff;
@@ -110,6 +114,13 @@ body {
     transform-origin: center;
     transition: transform 0.2s ease;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .panel > summary::before {
+        transition: none;
+    }
+}
+
 .panel[open] > summary::before {
     transform: rotate(90deg);
 }
