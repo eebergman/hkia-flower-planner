@@ -918,14 +918,16 @@ function widestRowLength(rows) {
     return Math.max(...rows.map((row) => row.length));
 }
 
-function toCamelCasePrefix(hyphenName) {
-    return hyphenName.replace(/-([a-z])/g, (_m, c) => c.toUpperCase());
+function toCamelCasePrefix(hyphenatedName) {
+    return hyphenatedName.replace(/-([a-z])/g, (_match, letter) =>
+        letter.toUpperCase()
+    );
 }
 
 // Look up the array that defines the grid rows for a given prefix
 function getRowsFor(prefix) {
-    const camel = toCamelCasePrefix(prefix);
-    const rows = window[camel];
+    const variableName = toCamelCasePrefix(prefix);
+    const rows = window[variableName];
     if (!Array.isArray(rows)) {
         return null;
     }
@@ -979,14 +981,20 @@ function sanityCheckGrids() {
     }
 }
 
-function bindClearButton(button, prefixes, renders) {
-    const btn =
-        typeof button === 'string' ? document.querySelector(button) : button;
-    if (!btn) return;
+function bindClearButton(
+    buttonSelectorOrElement,
+    prefixesToClear,
+    gridsToRender
+) {
+    const clearButtonElement =
+        typeof buttonSelectorOrElement === 'string'
+            ? document.querySelector(buttonSelectorOrElement)
+            : buttonSelectorOrElement;
+    if (!clearButtonElement) return;
 
-    const prefixSet = new Set(prefixes.map((p) => p + '-'));
+    const prefixSet = new Set(prefixesToClear.map((p) => p + '-'));
 
-    btn.addEventListener('click', () => {
+    clearButtonElement.addEventListener('click', () => {
         const keysToDelete = [];
         for (let i = 0, len = localStorage.length; i < len; i++) {
             const storageKey = localStorage.key(i);
@@ -1000,7 +1008,8 @@ function bindClearButton(button, prefixes, renders) {
         }
         for (const k of keysToDelete) localStorage.removeItem(k);
 
-        if (Array.isArray(renders) && renders.length) renderMany(renders);
+        if (Array.isArray(gridsToRender) && gridsToRender.length)
+            renderMany(gridRenderConfigurations);
     });
 }
 
@@ -1041,6 +1050,14 @@ function buildFlowerPlot(plot, state = {}) {
 }
 
 function renderGrid(container, rows, idPrefix) {
+    if (!Array.isArray(rows)) {
+        console.warn(
+            `renderGrid: missing rows for \"${idPrefix}\" (expected window.${toCamelCasePrefix(
+                idPrefix
+            )})`
+        );
+        return;
+    }
     const cols = widestRowLength(rows);
     if (container.classList.contains('grid')) {
         container.style.setProperty('--cols', cols);
@@ -1191,7 +1208,7 @@ function setupModal() {
     flowerForm.addEventListener('keydown', (event) => {
         if (event.key !== 'Tab') return;
         const focusables = flowerForm.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            'buttonSelectorOrElement, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
         if (!focusables.length) return;
         const first = focusables[0];
