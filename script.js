@@ -1,15 +1,9 @@
 // import {
-//   allFlowerColors,
-//   flowerSpecies,
-//   flowerPatterns,
+//   stuff
 // } from "./flowerData.js";
 
 // import {
-//   fieldsWest,
-//   fieldsMini,
-//   fieldsEast,
-//   plazaGarden,
-//   overlookNear,
+//   stuff
 // } from "./plotData.js";
 
 const defaultPlotColor = '#9b590d';
