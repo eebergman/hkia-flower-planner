@@ -494,7 +494,7 @@ const hopscotchIslands = [
 
 // 2. Resort • Resort Topmost West (RTW)
 const resortTopmostWest = [
-    /*       1234567890123 */
+    /*       1234567890-23 */
     /* A */ '0000000-----0',
     /* B */ '000000-------',
     /* C */ '00000--------',
@@ -578,7 +578,7 @@ const resortCliffTop = [
 
 // 11. Resort • Resort Gate (RG)
 const resortGate = [
-    /*       123456789012 */
+    /*       1234567890-2 */
     /* A */ '---000000000',
     /* B */ '---000000000',
     /* C */ '0--00000000-',
@@ -670,7 +670,7 @@ const peakTrail = [
 
 // 5. Mine Entrance Pond (MEP)
 const mineEntrancePond = [
-    /*       12345678901 */
+    /*       1234567890- */
     /* A */ '000000-00000',
     /* B */ '0000---00000',
     /* C */ '---------000',
@@ -699,7 +699,7 @@ const townCraftingTable = [
 
 // 8. Cabins West (CW)
 const cabinsWest = [
-    /*       123456789012 */
+    /*       1234567890-2 */
     /* A */ '---000000000',
     /* B */ '----00000000',
     /* C */ '---------000',
@@ -790,7 +790,7 @@ const hotSpringsBridge = [
 /* Reef */
 // 1. Reef • Club South (CS)
 const clubSouth = [
-    /*       12345678901 */
+    /*       1234567890- */
     /* A */ '0---------0',
     /* B */ '-----------',
     /* C */ '------0----',
@@ -856,7 +856,7 @@ const theMoon = [
 
 // 1. Wheatflower • Upper Left (UL1)
 const wheatflowerUpperLeft = [
-    /*       1234567890123 */
+    /*       1234567890-23 */
     /* A */ '-------------',
     /* B */ '-------------',
     /* C */ '-------------',
@@ -870,7 +870,7 @@ const wheatflowerUpperLeft = [
 
 // 2. Wheatflower • Upper Right (UR)
 const wheatflowerUpperRight = [
-    /*       123456789012345 */
+    /*       1234567890-2345 */
     /* A */ '---------------',
     /* B */ '---------------',
     /* C */ '---------------',
@@ -881,7 +881,7 @@ const wheatflowerUpperRight = [
 
 // 3. Wheatflower • Lower Left (LL)
 const wheatflowerLowerLeft = [
-    /*       123456789012 */
+    /*       1234567890-2 */
     /* A */ '------------',
     /* B */ '------------',
     /* C */ '------------',
@@ -896,7 +896,7 @@ const wheatflowerLowerLeft = [
 
 // 4. Wheatflower • Lower Right (LR)
 const wheatflowerLowerRight = [
-    /*       123456789012 */
+    /*       1234567890-2 */
     /* A */ '------------',
     /* B */ '------------',
     /* C */ '------------',
