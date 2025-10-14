@@ -911,7 +911,9 @@ const wheatflowerLowerRight = [
 
 // Safer max-width helper used by renderers
 function widestRowLength(rows) {
-    if (!Array.isArray(rows) || rows.length === 0) return 0;
+    if (!Array.isArray(rows) || rows.length === 0) {
+        return 0;
+    }
     return Math.max(...rows.map((row) => row.length));
 }
 
