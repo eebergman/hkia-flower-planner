@@ -1158,6 +1158,10 @@ function firstAlphaLetterUpper(value) {
   return (match ? match[0] : '#').toUpperCase();
 }
 
+function padOptgroupLabel(letter) {
+  return letter + '\u2009';
+}
+
 function populateColorSelectGrouped(selectElement, colorList) {
   if (!selectElement) return;
   // Start with the prompt option
@@ -1178,7 +1182,7 @@ function populateColorSelectGrouped(selectElement, colorList) {
 
   sortedLetters.forEach((letter) => {
     const group = document.createElement('optgroup');
-    group.label = letter; // bold by default in native UI
+    group.label = padOptgroupLabel(letter);
 
     colorsByLetter[letter]
       .slice()
@@ -1262,7 +1266,7 @@ function bindClearButton(
     for (const k of keysToDelete) localStorage.removeItem(k);
 
     if (Array.isArray(gridsToRender) && gridsToRender.length)
-      renderMany(gridRenderConfigurations);
+      renderMany(gridsToRender);
   });
 }
 
@@ -1421,7 +1425,7 @@ function populateSpeciesSelectGrouped(selectElement, speciesList) {
 
   sortedLetters.forEach((letter) => {
     const group = document.createElement('optgroup');
-    group.label = letter;
+    group.label = padOptgroupLabel(letter);
 
     speciesByLetter[letter]
       .slice()
