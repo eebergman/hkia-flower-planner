@@ -1520,10 +1520,6 @@ function setupModal() {
     }
   });
 
-  // Enter-to-submit (accessible + predictable)
-  // - If the modal is open and Enter is pressed anywhere in the form, submit.
-  // - Exception: In the Notes textarea, Shift+Enter inserts a newline (no submit).
-  // - Enter on Cancel/Clear/Submit buttons uses the native button behavior.
   flowerForm.addEventListener('keydown', (event) => {
     if (event.key !== 'Enter') return;
     if (flowerModal.getAttribute('aria-hidden') === 'true') return; // not open
@@ -1533,20 +1529,20 @@ function setupModal() {
       activeElement?.tagName === 'BUTTON' ||
       (activeElement?.getAttribute &&
         activeElement.getAttribute('role') === 'button');
-    if (isButton) return; // let native click behavior occur
+    if (isButton) return; // let native button behavior occur
 
     const isTextarea = activeElement?.tagName === 'TEXTAREA';
-    if (isTextarea && event.shiftKey) {
-      // Allow Shift+Enter to add a newline
+
+    if (!event.ctrlKey && !event.metaKey) {
+      if (isTextarea && event.shiftKey) return;
+      event.preventDefault();
       return;
     }
 
-    // In all other cases, Enter submits the form
     event.preventDefault();
     if (typeof flowerForm.requestSubmit === 'function') {
       flowerForm.requestSubmit();
     } else {
-      // Fallback for older browsers
       const submitEvent = new Event('submit', {
         bubbles: true,
         cancelable: true,
