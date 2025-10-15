@@ -1150,12 +1150,10 @@ function toCamelCasePrefix(hyphenatedName) {
 
 // Look up the array that defines the grid rows for a given prefix
 function getRowsFor(prefix) {
-  const variableName = toCamelCasePrefix(prefix);
-  const rows = window[variableName];
-  if (!Array.isArray(rows)) {
-    return null;
-  }
-  return rows;
+  const entry = flowerPatchInfo.find(
+    (p) => p && typeof p.el === 'string' && p.el.replace(/^#/, '') === prefix
+  );
+  return entry ? entry.rows : null;
 }
 
 function setSelectByValue(selectEl, value) {
