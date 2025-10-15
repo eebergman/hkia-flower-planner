@@ -317,7 +317,7 @@ body.modal-open {
   /* soft diagonal hatch with semi-transparent light bands */
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(255, 255, 255, 0.28) 0 8px,
+    rgba(255, 255, 255, 0.3) 0 8px,
     rgba(255, 255, 255, 0.1) 8px 16px
   );
 }
