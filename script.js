@@ -554,14 +554,14 @@ const natureReserve = [
 // 1. Oasis West: North (OWN)
 const oasisWestNorth = [
     /*       123456789 */
-    /* A */ '000----00',
+    /* A */ '000-----0',
     /* B */ '0--------',
     /* C */ '-----00--',
     /* D */ '----000--',
     /* E */ '----00---',
     /* F */ '---------',
     /* G */ '0--------',
-    /* H */ '0000000-0',
+    /* H */ '000000--0',
 ];
 
 // 2. Oasis West: South (OWS)
@@ -569,45 +569,45 @@ const oasisWestSouth = [
     /*       123456 */
     /* A */ '00---0',
     /* B */ '0-----',
-    /* C */ '--0--0',
-    /* D */ '0-0000',
+    /* C */ '-----0',
+    /* D */ '0--000',
 ];
 
 // 3. Oasis East (OE)
 const oasisEast = [
     /*       12345678 */
     /* A */ '000---00',
-    /* B */ '0------0',
-    /* C */ '--0----0',
-    /* D */ '0-0----0',
+    /* B */ '00-----0',
+    /* C */ '--------',
+    /* D */ '0------0',
 ];
 
 // 4. Peak Trail (PT)
 const peakTrail = [
     /*       123456 */
     /* A */ '0----0',
-    /* B */ '0----0',
-    /* C */ '--0000',
-    /* D */ '0-0000',
+    /* B */ '0-----',
+    /* C */ '----00',
+    /* D */ '--0000',
 ];
 
-// 5. Mine Entrance Pond (MEP)
+// 5. Mine Entrance Pond (MEP) done
 const mineEntrancePond = [
     /*       1234567890- */
-    /* A */ '000000-00000',
-    /* B */ '0000---00000',
-    /* C */ '---------000',
-    /* D */ '---------000',
-    /* E */ '----0000---0',
+    /* A */ '0000000---00',
+    /* B */ '00----------',
+    /* C */ '------------',
+    /* D */ '-----------0',
+    /* E */ '----00000000',
 ];
 
 // 6. Mine Entrance Town (MET)
 const mineEntranceTown = [
     /*       12345678 */
-    /* A */ '000---00',
-    /* B */ '000----0',
-    /* C */ '------00',
-    /* D */ '0-000000',
+    /* A */ '000----0',
+    /* B */ '-------=',
+    /* C */ '0------0',
+    /* D */ '000---00',
 ];
 
 // 7. Town Crafting Table (TCT)
@@ -617,7 +617,7 @@ const townCraftingTable = [
     /* B */ '---0',
     /* C */ '----',
     /* D */ '0---',
-    /* E */ '--0-',
+    /* E */ '00--',
 ];
 
 // 8. Cabins West (CW)
@@ -636,17 +636,17 @@ const deadwoodForest = [
     /* A */ '000---',
     /* B */ '00----',
     /* C */ '------',
-    /* D */ '0--000',
+    /* D */ '0---00',
 ];
 
-// 10. Cabin 1 North (CON)
+// 10. Cabin One North (CON)
 const cabinOneNorth = [
     /*       12345 */
     /* A */ '000--',
     /* B */ '0----',
     /* C */ '-----',
     /* D */ '----0',
-    /* E */ '00000',
+    /* E */ '00--0',
 ];
 
 // 11. Cabin 1 South (COS)
@@ -662,11 +662,11 @@ const cabinOneSouth = [
 // 1. Volcano • Ruins West (RW)
 const ruinsWest = [
     /*       123 */
-    /* A */ '-0-',
+    /* A */ '--0',
     /* B */ '---',
     /* C */ '0--',
     /* D */ '0-0',
-    /* E */ '000',
+    /* E */ '0-0',
     /* F */ '---',
 ];
 
@@ -678,35 +678,37 @@ const volcanoCabinWest = [
     /* C */ '----',
 ];
 
+// Cabin Three is missing.
+
 // 4. Volcano • Pizza Cliff Bottom (PCB)
 const pizzaCliffBottom = [
     /*       123456789 */
-    /* A */ '000000---0',
-    /* B */ '0000------',
-    /* C */ '00--------',
-    /* D */ '----------',
-    /* E */ '--------0-',
+    /* A */ '00000---0',
+    /* B */ '0000-----',
+    /* C */ '000------',
+    /* D */ '---------',
+    /* E */ '0-------0',
 ];
 
 // 5. Volcano • Pizza Cliff Top (PCT)
 const pizzaCliffTop = [
     /*       1234567 */
-    /* A */ '-000000',
-    /* B */ '--00000',
-    /* C */ '-0-----',
-    /* D */ '0------',
-    /* E */ '000-000',
+    /* A */ '--00000',
+    /* B */ '-------',
+    /* C */ '0------',
+    /* D */ '0-----0',
+    /* E */ '000--00',
 ];
 
 // 6. Volcano • Hot Springs Bridge (HSB)
 const hotSpringsBridge = [
     /*       12345 */
-    /* A */ '00000',
-    /* B */ '---0-',
+    /* A */ '--000',
+    /* B */ '----0',
     /* C */ '-----',
     /* D */ '-----',
-    /* E */ '-0--0',
-    /* F */ '0-00-',
+    /* E */ '0---0',
+    /* F */ '00--0',
 ];
 /* Mount Hothead */
 
@@ -716,22 +718,22 @@ const clubSouth = [
     /*       1234567890- */
     /* A */ '0---------0',
     /* B */ '-----------',
-    /* C */ '------0----',
-    /* D */ '00-----0---',
-    /* E */ '--0------0-',
+    /* C */ '-------00--',
+    /* D */ '00-----00--',
+    /* E */ '000--------',
     /* F */ '0000------0',
 ];
 
 // 2. Reef • Club East (CE)
 const clubEast = [
     /*       1234567 */
-    /* A */ '0----0-',
+    /* A */ '0----00',
     /* B */ '------0',
     /* C */ '------0',
     /* D */ '------0',
     /* E */ '------0',
-    /* F */ '------0',
-    /* G */ '-0----0',
+    /* F */ '-------',
+    /* G */ '0------',
     /* H */ '00-----',
 ];
 /* Reef */
@@ -739,19 +741,21 @@ const clubEast = [
 // 1. Cloud • Outer Cabin (CS)
 const cloudOuterCabin = [
     /*       123456 */
-    /* A */ '----00',
-    /* B */ '---0-0',
-    /* C */ '--0000',
-    /* D */ '-----0',
-    /* E */ '0-----',
-    /* F */ '0---0-',
+    /* A */ '0--000',
+    /* B */ '----00',
+    /* C */ '---000',
+    /* D */ '0---00',
+    /* E */ '0----0',
+    /* G */ '------',
+    /* H */ '0-----',
+    /* I */ '00---0',
 ];
 
 // Extreme Areas
-// Caldera • Mailbox (CM)
+// Caldera • Mailbox (CM) done
 const calderaMailbox = [
     /*       123 */
-    /* A */ '00-',
+    /* A */ '0-0',
     /* B */ '---',
     /* C */ '--0',
 ];
@@ -759,7 +763,7 @@ const calderaMailbox = [
 // Peak • Icy Peak Summit (IPS)
 const icyPeakSummit = [
     /*       1234 */
-    /* A */ '0000',
+    /* A */ '0--0',
     /* B */ '----',
 ];
 
@@ -1161,28 +1165,29 @@ function getSavedStateMap(prefix) {
     return map;
 }
 
-function sanityCheckGrids() {
-    const gridIds = Array.from(document.querySelectorAll('.grid')).map(
-        (el) => el.id
-    );
-    const problems = [];
-    gridIds.forEach((id) => {
-        const rows = getRowsFor(id);
-        if (!rows)
-            problems.push(
-                `Missing rows array for "${id}" (expected window.${toCamelCasePrefix(
-                    id
-                )})`
-            );
-        const gridEl = document.getElementById(id);
-        if (!gridEl) problems.push(`Grid element not found for id "${id}"`);
-    });
-    if (problems.length) {
-        console.groupCollapsed('Garden Planner – Sanity Check');
-        problems.forEach((msg) => console.warn(msg));
-        console.groupEnd();
-    }
-}
+// Need to rework this
+// function sanityCheckGrids() {
+//     const gridIds = Array.from(document.querySelectorAll('.grid')).map(
+//         (el) => el.id
+//     );
+//     const problems = [];
+//     gridIds.forEach((id) => {
+//         const rows = getRowsFor(id);
+//         if (!rows)
+//             problems.push(
+//                 `Missing rows array for "${id}" (expected window.${toCamelCasePrefix(
+//                     id
+//                 )})`
+//             );
+//         const gridEl = document.getElementById(id);
+//         if (!gridEl) problems.push(`Grid element not found for id "${id}"`);
+//     });
+//     if (problems.length) {
+//         console.groupCollapsed('Garden Planner – Sanity Check');
+//         problems.forEach((msg) => console.warn(msg));
+//         console.groupEnd();
+//     }
+// }
 
 function bindClearButton(
     buttonSelectorOrElement,
@@ -1602,7 +1607,7 @@ function closeCellModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
     setupModal();
-    sanityCheckGrids();
+    // sanityCheckGrids();
 
     // Render flower patches
     // IDs present in index.html (Meadows + other biomes)
@@ -1840,3 +1845,91 @@ document.addEventListener('DOMContentLoaded', () => {
         event.stopPropagation();
     });
 });
+
+(function setupFeedbackModal() {
+    var modalElement = document.getElementById('feedback-modal');
+    var openButton = document.getElementById('open-feedback');
+    var closeButton = document.getElementById('close-feedback');
+    var cancelButton = document.getElementById('fb-cancel');
+    var formElement = document.getElementById('feedback-form');
+    if (
+        !modalElement ||
+        !openButton ||
+        !closeButton ||
+        !cancelButton ||
+        !formElement
+    ) {
+        return;
+    }
+
+    function openModal() {
+        modalElement.setAttribute('aria-hidden', 'false');
+        // optional: focus the first field
+        var subjectField = document.getElementById('fb-subject');
+        if (subjectField) {
+            subjectField.focus();
+        }
+    }
+
+    function closeModal() {
+        modalElement.setAttribute('aria-hidden', 'true');
+        openButton.focus();
+    }
+
+    openButton.addEventListener('click', openModal);
+    closeButton.addEventListener('click', closeModal);
+    cancelButton.addEventListener('click', closeModal);
+
+    // Click on shaded backdrop closes the modal
+    modalElement.addEventListener('click', function (evt) {
+        var clickedBackdrop = evt.target === modalElement;
+        if (clickedBackdrop) {
+            closeModal();
+        }
+    });
+
+    formElement.addEventListener('submit', function (evt) {
+        evt.preventDefault();
+
+        var subjectValue = String(
+            document.getElementById('fb-subject').value || ''
+        ).trim();
+        var messageValue = String(
+            document.getElementById('fb-message').value || ''
+        ).trim();
+        var nameValue = String(
+            document.getElementById('fb-name').value || ''
+        ).trim();
+        var replyValue = String(
+            document.getElementById('fb-reply').value || ''
+        ).trim();
+
+        var lines = [];
+        if (messageValue.length > 0) {
+            lines.push(messageValue);
+        }
+        lines.push('');
+        if (nameValue.length > 0) {
+            lines.push('From: ' + nameValue);
+        }
+        if (replyValue.length > 0) {
+            lines.push('Reply-To: ' + replyValue);
+        }
+        lines.push('Page: ' + window.location.href);
+        lines.push('User Agent: ' + navigator.userAgent);
+
+        var bodyText = lines.join('\n');
+        var mailtoHref =
+            'mailto:hkia.assistive.apps@gmail.com' +
+            '?subject=' +
+            encodeURIComponent(subjectValue || 'HKIA Feedback') +
+            '&body=' +
+            encodeURIComponent(bodyText);
+
+        // Launch user’s mail client
+        window.location.href = mailtoHref;
+
+        // Close the modal afterward
+        closeModal();
+    });
+})();

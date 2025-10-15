@@ -46,11 +46,38 @@ html {
 
 html,
 body {
-    height: 100%;
     margin: 0;
     background: var(--spring-green);
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial,
         sans-serif;
+    min-height: 100%;
+}
+
+html {
+    background: linear-gradient(
+        160deg,
+        #dff6d0 0%,
+        #b7e3a0 25%,
+        #93b73b 60%,
+        #f3e7d1 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* resize with page height */
+    /* background-attachment: scroll;  default; ensures it’s not fixed */
+}
+
+body {
+    background: none;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+@supports selector(body:has(*)) {
+    body:has(#feedback-modal[aria-hidden='false']) {
+        overflow: hidden;
+    }
 }
 
 .site-header {
@@ -313,6 +340,14 @@ body {
     font-size: var(--eighteen-px);
 }
 
+.modal-dialog,
+.modal-content,
+.modal .panel,
+.modal .panel-body {
+    max-height: min(90vh, 48rem);
+    overflow: auto;
+}
+
 .form-row {
     display: grid;
     gap: var(--six-px);
@@ -365,6 +400,88 @@ body {
     border-color: var(--navy);
 }
 
+.btn-feedback {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--light-gray);
+    background: var(--dark-white);
+    font-weight: 600;
+}
+
+/* Basic modal shell (reuses your palette) */
+#feedback-modal[aria-hidden='false'] {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+}
+
+#feedback-modal[aria-hidden='true'] {
+    display: none;
+}
+
+#feedback-modal .modal-content {
+    width: min(640px, 92vw);
+    max-height: 90vh;
+    overflow: auto;
+    background: var(--white);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    padding: 1rem 1rem 0.75rem;
+}
+
+#feedback-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+#feedback-modal .close-feedback {
+    border: 0;
+    background: transparent;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#feedback-form .form-row {
+    margin: 0.75rem 0;
+}
+#feedback-form .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+#feedback-form input,
+#feedback-form textarea {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.5rem;
+    font: inherit;
+}
+#feedback-form .modal-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+}
+#feedback-form .modal-actions button {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--light-gray);
+    background: var(--dark-white);
+}
+#fb-send {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+}
+
 label:has(+ select:required):after {
     content: ' *';
     color: var(--red);
@@ -404,16 +521,4 @@ select:disabled {
     display: flex;
     justify-content: space-between;
     width: 40rem;
-}
-
-/* Make the background fun */
-body {
-    background: linear-gradient(
-        160deg,
-        #dff6d0 0%,
-        #b7e3a0 25%,
-        #93b73b 60%,
-        #f3e7d1 100%
-    );
-    background-attachment: fixed;
 }
