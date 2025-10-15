@@ -37,7 +37,7 @@
 						<div id="fields-west" class="grid" aria-label="Fields West and Mini"></div>
 						<div class="toolbar">
 							<button id="clear-fields-west">Clear All West and Mini Data</button>
-							<small>Tip: click a cell to get started.</small>
+							<small>Tip: click a plot to get started.</small>
 						</div>
 
 						<!-- Nested “Mini” sub-panel that holds the small floating grid -->
@@ -724,16 +724,16 @@
 		</details>
 	</div>
 
-	<div id="cell-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true"
-		aria-labelledby="cell-modal-title">
-		<div class="modal-backdrop" id="cell-backdrop"></div>
+	<div id="plot-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true"
+		aria-labelledby="plot-modal-title">
+		<div class="modal-backdrop" id="plot-backdrop"></div>
 		<div class="modal-dialog" role="document">
-			<h2 id="cell-modal-title">Edit Plot</h2>
+			<h2 id="plot-modal-title">Edit Plot</h2>
 			<hr>
-			<form id="cell-form">
+			<form id="plot-form">
 				<div class="form-row">
 					<label class="checkbox">
-						<input type="checkbox" id="cell-empty" />
+						<input type="checkbox" id="plot-empty" />
 						Mark Plot Empty for New Plants to Grow?
 					</label>
 				</div>
@@ -744,35 +744,35 @@
 					</label>
 				</div>
 				<div class="form-row">
-					<label for="cell-color">Color</label>
-					<select id="cell-color" required>
+					<label for="plot-color">Color</label>
+					<select id="plot-color" required>
 						<option value="">Choose the color...</option>
 					</select>
 				</div>
 				<div class="form-row">
-					<label for="cell-flower">Flower</label>
-					<select id="cell-flower" required>
+					<label for="plot-flower">Flower</label>
+					<select id="plot-flower" required>
 						<option value="">Choose the species...</option>
 					</select>
 				</div>
 				<div class="form-row">
-					<label for="cell-pattern">Pattern <small>(optional)</small></label>
-					<select id="cell-pattern">
+					<label for="plot-pattern">Pattern <small>(optional)</small></label>
+					<select id="plot-pattern">
 						<option value="">No pattern</option>
 					</select>
 				</div>
 				<div class="form-row">
-					<label for="cell-notes">Notes <small><span id="notes-count">0</span>/250</small></label>
-					<textarea id="cell-notes" rows="3" maxlength="250"
+					<label for="plot-notes">Notes <small><span id="notes-count">0</span>/250</small></label>
+					<textarea id="plot-notes" rows="3" maxlength="250"
 						placeholder="e.g. Breeding for Seafoam Bellbutton">
 					</textarea>
 				</div>
-				<p id="cell-error" class="form-error" aria-live="polite"></p>
+				<p id="plot-error" class="form-error" aria-live="polite"></p>
 				<div class="modal-actions">
-					<button type="button" id="cell-clear">Clear Plot</button>
+					<button type="button" id="plot-clear">Clear Plot</button>
 					<div class="form-actions">
-						<button type="button" id="cell-cancel">Cancel</button>
-						<button type="submit" id="cell-submit">Submit</button>
+						<button type="button" id="plot-cancel">Cancel</button>
+						<button type="submit" id="plot-submit">Submit</button>
 					</div>
 				</div>
 			</form>

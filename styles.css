@@ -280,8 +280,8 @@ body.modal-open {
   width: fit-content;
 }
 
-/* Cells */
-.cell {
+/* plots */
+.plot {
   width: var(--plot-size);
   height: var(--plot-size);
   background: var(--brown);
@@ -300,7 +300,7 @@ body.modal-open {
   position: relative;
 }
 
-.cell:hover {
+.plot:hover {
   box-shadow: 0 0 0 var(--two-px) #00000010 inset;
   cursor: pointer;
 }
@@ -419,12 +419,12 @@ body.modal-open {
   cursor: pointer;
 }
 
-.modal-actions #cell-clear {
+.modal-actions #plot-clear {
   background: var(--red);
   color: var(--white);
   border-color: var(--navy);
 }
-.form-actions #cell-submit {
+.form-actions #plot-submit {
   background: var(--navy);
   color: var(--white);
   border-color: var(--navy);

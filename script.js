@@ -1335,13 +1335,13 @@ function renderGrid(container, rows, idPrefix) {
       if (padded[cIdx] !== '-') continue;
 
       const flowerPlot = document.createElement('div');
-      flowerPlot.className = 'cell';
+      flowerPlot.className = 'plot';
       flowerPlot.style.gridColumn = (cIdx + 1).toString();
       flowerPlot.style.gridRow = (rIdx + 1).toString();
-      const cellId = `${idPrefix}-${rIdx}-${cIdx}`;
-      flowerPlot.dataset.key = cellId;
+      const plotId = `${idPrefix}-${rIdx}-${cIdx}`;
+      flowerPlot.dataset.key = plotId;
 
-      const saved = savedMap.get(cellId) || {};
+      const saved = savedMap.get(plotId) || {};
       buildFlowerPlot(flowerPlot, saved);
 
       frag.appendChild(flowerPlot);
@@ -1454,17 +1454,17 @@ let flowerModal,
   clearPlotButton;
 
 function setupModal() {
-  flowerModal = document.getElementById('cell-modal');
-  backdrop = document.getElementById('cell-backdrop');
-  flowerForm = document.getElementById('cell-form');
-  colorSelect = document.getElementById('cell-color');
-  flowerSelect = document.getElementById('cell-flower');
-  patternSelect = document.getElementById('cell-pattern');
-  plotNotes = document.getElementById('cell-notes');
+  flowerModal = document.getElementById('plot-modal');
+  backdrop = document.getElementById('plot-backdrop');
+  flowerForm = document.getElementById('plot-form');
+  colorSelect = document.getElementById('plot-color');
+  flowerSelect = document.getElementById('plot-flower');
+  patternSelect = document.getElementById('plot-pattern');
+  plotNotes = document.getElementById('plot-notes');
   plannedCheckbox = document.getElementById('plot-planned');
-  clearPlotButton = document.getElementById('cell-clear');
-  errorElement = document.getElementById('cell-error');
-  intentionallyEmptyPlotCheckbox = document.getElementById('cell-empty');
+  clearPlotButton = document.getElementById('plot-clear');
+  errorElement = document.getElementById('plot-error');
+  intentionallyEmptyPlotCheckbox = document.getElementById('plot-empty');
 
   //
 
@@ -1486,16 +1486,16 @@ function setupModal() {
   });
 
   document
-    .getElementById('cell-cancel')
-    .addEventListener('click', closeCellModal);
-  backdrop.addEventListener('click', closeCellModal);
+    .getElementById('plot-cancel')
+    .addEventListener('click', closeEditPlotModal);
+  backdrop.addEventListener('click', closeEditPlotModal);
   document.addEventListener('keydown', (event) => {
     if (
       flowerModal.getAttribute('aria-hidden') === 'false' &&
       event.key === 'Escape'
     ) {
       event.preventDefault();
-      closeCellModal();
+      closeEditPlotModal();
     }
   });
 
@@ -1563,7 +1563,7 @@ function setupModal() {
       const payload = { isIntentionallyEmptyPlot: true, notes };
       if (currentKey) localStorage.setItem(currentKey, JSON.stringify(payload));
       if (currentPlot) buildFlowerPlot(currentPlot, payload);
-      closeCellModal();
+      closeEditPlotModal();
       return;
     }
 
@@ -1598,7 +1598,7 @@ function setupModal() {
 
     if (currentKey) localStorage.setItem(currentKey, JSON.stringify(payload));
     if (currentPlot) buildFlowerPlot(currentPlot, payload);
-    closeCellModal();
+    closeEditPlotModal();
   });
 
   // Clear = hard reset to default brown
@@ -1617,7 +1617,7 @@ function setupModal() {
       intentionallyEmptyPlotCheckbox.checked = false;
     applyEmptyPlotModeUI(false);
 
-    closeCellModal();
+    closeEditPlotModal();
   });
 
   if (intentionallyEmptyPlotCheckbox) {
@@ -1635,7 +1635,7 @@ function setupModal() {
           localStorage.setItem(currentKey, JSON.stringify(payload));
         } catch {}
         buildFlowerPlot(currentPlot, payload);
-        closeCellModal();
+        closeEditPlotModal();
       }
     });
   }
@@ -1649,9 +1649,9 @@ function applyEmptyPlotModeUI(isIntentionallyEmpty) {
 
 // Add a tooltip somewhere that informs the user why only some flowers show up.
 
-function openCellModal(cell, key) {
+function openEditPlotModal(plot, key) {
   lastFocus = document.activeElement;
-  currentPlot = cell;
+  currentPlot = plot;
   currentKey = key;
 
   const saved = JSON.parse(localStorage.getItem(key) || '{}');
@@ -1709,7 +1709,7 @@ function openCellModal(cell, key) {
   );
 }
 
-function closeCellModal() {
+function closeEditPlotModal() {
   flowerModal.setAttribute('aria-hidden', 'true');
   if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
   currentPlot = null;
@@ -1720,20 +1720,16 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModal();
   // sanityCheckGrids();
 
-  // Render flower patches
-  // IDs present in index.html (Meadows + other biomes)
-
   renderMany(flowerPatchInfo);
 
-  // Single delegated click listener for all cells (no per-cell listeners)
   document.addEventListener(
     'click',
     (event) => {
-      const target = event.target.closest('.cell');
+      const target = event.target.closest('.plot');
       if (!target) return;
       const key = target.dataset.key;
       if (!key) return;
-      openCellModal(target, key);
+      openEditPlotModal(target, key);
     },
     { passive: true }
   );
