@@ -394,6 +394,20 @@ const greenhouse = [
   /* J */ '----------',
 ];
 
+const greenhouseAlt = [
+  /*       1234567890 */
+  /* A */ '5555555555',
+  /* B */ '5444444444',
+  /* C */ '5444444444',
+  /* D */ '5332222233',
+  /* E */ '5332--1233',
+  /* F */ '5332--1233',
+  /* G */ '5332--1233',
+  /* H */ '5332111233',
+  /* I */ '5444444444',
+  /* J */ '5444444444',
+];
+
 // 1. Resort • Hopscotch Islands (HI)
 const hopscotchIslands = [
   /*       12345 */
@@ -1199,6 +1213,33 @@ function populateColorSelectGrouped(selectElement, colorList) {
   });
 }
 
+// Read/write the saved greenhouse tier (persist across visits)
+function getGreenhouseTier() {
+  return parseInt(localStorage.getItem('greenhouse-tier') || '0', 10) || 0;
+}
+
+function setGreenhouseTier(tier) {
+  localStorage.setItem('greenhouse-tier', String(tier));
+}
+
+// Is this character an unlocked plot at the given tier?
+// greenhouseAlt uses '-' for base plots and digits '1'..'5' for upgrades.
+function isUnlockedChar(plot, tier) {
+  // isUnlockedChar
+  if (plot === '-') {
+    return true;
+  }
+  const upgradeNumber = parseInt(plot, 10);
+  return tier >= upgradeNumber;
+}
+function isPlotChar(ch) {
+  if (ch === '-') {
+    return true;
+  }
+  const n = parseInt(ch, 10);
+  return !Number.isNaN(n) && n >= 1 && n <= 5;
+}
+
 function getSavedStateMap(prefix) {
   const map = new Map();
   const needle = prefix + '-';
@@ -1349,6 +1390,52 @@ function renderGrid(container, rows, idPrefix) {
       buildFlowerPlot(flowerPlot, saved);
 
       frag.appendChild(flowerPlot);
+    }
+  }
+
+  container.replaceChildren(frag);
+}
+
+//
+function renderGreenhouse(container, rowsAlt, idPrefix, tier) {
+  if (!container || !Array.isArray(rowsAlt)) return;
+
+  const cols = widestRowLength(rowsAlt);
+  if (container.classList.contains('grid')) {
+    container.style.setProperty('--cols', cols);
+  }
+
+  const savedMap = getSavedStateMap(idPrefix);
+  const frag = document.createDocumentFragment();
+
+  for (let r = 0; r < rowsAlt.length; r++) {
+    const row = rowsAlt[r].padEnd(cols, ' ');
+    for (let c = 0; c < cols; c++) {
+      const ch = row[c];
+
+      // Only render actual plot slots (base '-' or upgrade digits)
+      if (!isPlotChar(ch)) continue;
+
+      const plot = document.createElement('div');
+      plot.className = 'plot';
+      plot.style.gridColumn = String(c + 1);
+      plot.style.gridRow = String(r + 1);
+
+      const key = `${idPrefix}-${r}-${c}`;
+      plot.dataset.key = key;
+
+      const locked = !isUnlockedChar(ch, tier);
+      if (locked) {
+        plot.classList.add('plot--locked');
+        plot.dataset.locked = '1';
+      } else {
+        plot.dataset.locked = '0';
+      }
+
+      const saved = savedMap.get(key) || {};
+      buildFlowerPlot(plot, saved);
+
+      frag.appendChild(plot);
     }
   }
 
@@ -1722,11 +1809,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderMany(flowerPatchInfo);
 
+  const greenhouseContainer = document.querySelector('#greenhouse');
+  const greenhouseTierSelect = document.getElementById('greenhouse-tier');
+
+  if (greenhouseContainer && greenhouseTierSelect) {
+    // Initialize select from saved tier
+    const savedTier = getGreenhouseTier();
+    greenhouseTierSelect.value = String(savedTier);
+
+    // First render
+    renderGreenhouse(
+      greenhouseContainer,
+      greenhouseAlt,
+      'greenhouse',
+      savedTier
+    );
+
+    // Re-render on change and persist
+    greenhouseTierSelect.addEventListener('change', () => {
+      const tier = parseInt(greenhouseTierSelect.value, 10) || 0;
+      setGreenhouseTier(tier);
+      renderGreenhouse(greenhouseContainer, greenhouseAlt, 'greenhouse', tier);
+    });
+  }
+
   document.addEventListener(
     'click',
     (event) => {
       const target = event.target.closest('.plot');
       if (!target) return;
+
+      if (
+        target.classList.contains('plot--locked') ||
+        target.dataset.locked === '1'
+      ) {
+        return;
+      }
+
       const key = target.dataset.key;
       if (!key) return;
       openEditPlotModal(target, key);

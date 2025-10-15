@@ -328,6 +328,25 @@ body.modal-open {
   );
 }
 
+.plot--locked {
+  opacity: 0.35;
+  filter: grayscale(0.5) saturate(0.6);
+  cursor: not-allowed;
+  pointer-events: none; /* prevents click -> no modal */
+  position: relative;
+}
+.plot--locked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.5) 0 6px,
+    rgba(255, 255, 255, 0.2) 6px 12px
+  );
+  pointer-events: none;
+}
+
 /* Inline checkbox row tidy-up */
 .form-row--inline .checkbox-label {
   display: inline-flex;

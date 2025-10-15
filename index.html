@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -146,19 +146,24 @@
 				<details class="panel" data-id="greenhouse">
 					<summary class="greenhouse-summary">Greenhouse</summary>
 					<div class="panel-body">
-						<div class="placeholder">Coming soon</div>
-					</div>
-				</details>
-
-				<!-- <details class="panel" data-id="gazebo-path-east">
-					<summary class="meadows-summary">11. Gazebo Path East</summary>
-					<div class="panel-body">
-						<div id="gazebo-path-east" class="grid" aria-label="Gazebo Path East"></div>
+						<div class="toolbar" id="greenhouse-toolbar">
+							<label for="greenhouse-tier"><strong>Upgrade tier</strong></label>
+							<select id="greenhouse-tier">
+								<option value="0">Base</option>
+								<option value="1">Tier 1</option>
+								<option value="2">Tier 2</option>
+								<option value="3">Tier 3</option>
+								<option value="4">Tier 4</option>
+								<option value="5">Tier 5</option>
+							</select>
+							<small>Locked plots are dimmed and cannot be edited.</small>
+						</div>
+						<div id="greenhouse" class="grid" aria-label="Greenhouse"></div>
 						<div class="toolbar">
-							<button id="clear-gazebo-path-east">Clear All Gazebo Path East Data</button>
+							<button id="clear-gazebo-path-east">Clear All Greenhouse Data</button>
 						</div>
 					</div>
-				</details> -->
+				</details>
 
 			</div>
 		</details>
