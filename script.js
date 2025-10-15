@@ -1034,6 +1034,11 @@ const flowerPatchInfo = [
     rows: volcanoCabinWest,
     location: 'Volcano',
   },
+{
+    el: '#volcano-cabin-three',
+    rows: volcanoCabinThree,
+    location: 'Volcano',
+  },
   {
     el: '#pizza-cliff-bottom',
     rows: pizzaCliffBottom,
