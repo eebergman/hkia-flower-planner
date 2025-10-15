@@ -668,7 +668,15 @@ const volcanoCabinWest = [
   /* C */ '----',
 ];
 
-// Cabin Three is missing.
+// 2. Volcano • Cabin West (CW)
+const volcanoCabinThree = [
+  /*       123456 */
+  /* A */ '---000',
+  /* B */ '----00',
+  /* C */ '-----0',
+  /* D */ '-----0',
+  /* E */ '0000--',
+];
 
 // 4. Volcano • Pizza Cliff Bottom (PCB)
 const pizzaCliffBottom = [
