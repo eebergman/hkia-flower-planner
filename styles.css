@@ -80,6 +80,12 @@ body.modal-open {
   }
 }
 
+@supports selector(body:has(*)) {
+  body:has(#plot-modal[aria-hidden='false']) {
+    overflow: hidden;
+  }
+}
+
 .site-header {
   position: sticky;
   top: 0;
