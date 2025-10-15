@@ -1034,7 +1034,7 @@ const flowerPatchInfo = [
     rows: volcanoCabinWest,
     location: 'Volcano',
   },
-{
+  {
     el: '#volcano-cabin-three',
     rows: volcanoCabinThree,
     location: 'Volcano',
@@ -1153,6 +1153,48 @@ function setSelectByValue(selectEl, value) {
   selectEl.value = match ? value : '';
 }
 
+function firstAlphaLetterUpper(value) {
+  const match = String(value || '').match(/[A-Za-z]/);
+  return (match ? match[0] : '#').toUpperCase();
+}
+
+function populateColorSelectGrouped(selectElement, colorList) {
+  if (!selectElement) return;
+  // Start with the prompt option
+  selectElement.innerHTML = '<option value="">Choose the color...</option>';
+
+  // Group colors by first letter
+  const colorsByLetter = {};
+  colorList.forEach((colorItem) => {
+    const letter = firstAlphaLetterUpper(colorItem.name);
+    if (!colorsByLetter[letter]) colorsByLetter[letter] = [];
+    colorsByLetter[letter].push(colorItem);
+  });
+
+  // Sort groups A–Z and names within each group
+  const sortedLetters = Object.keys(colorsByLetter).sort((a, b) =>
+    a.localeCompare(b)
+  );
+
+  sortedLetters.forEach((letter) => {
+    const group = document.createElement('optgroup');
+    group.label = letter; // bold by default in native UI
+
+    colorsByLetter[letter]
+      .slice()
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach((colorItem) => {
+        const option = document.createElement('option');
+        option.value = colorItem.hex;
+        option.textContent = colorItem.name;
+        option.dataset.name = colorItem.name;
+        group.appendChild(option);
+      });
+
+    selectElement.appendChild(group);
+  });
+}
+
 function getSavedStateMap(prefix) {
   const map = new Map();
   const needle = prefix + '-';
@@ -1254,12 +1296,13 @@ function buildFlowerPlot(plot, state = {}) {
 
   // Planned state (disabled look that works across all colors)
   if (state.planned) {
-    plot.classList.add('cell--planned');
+    plot.classList.add('plot--planned');
   } else {
-    plot.classList.remove('cell--planned');
+    plot.classList.remove('plot--planned');
   }
 
   const toolTipContent = [];
+  if (state.planned) toolTipContent.push('Planned');
   if (state.colorName) toolTipContent.push(state.colorName);
   if (state.patternName) toolTipContent.push(state.patternName);
   if (state.flowerName) toolTipContent.push(state.flowerName);
@@ -1358,15 +1401,41 @@ function speciesForBiome(biome) {
   );
 }
 
-function renderSpeciesOptions(speciesList) {
-  return ['<option value="">Choose the species...</option>']
-    .concat(
-      speciesList.map(
-        (s) =>
-          `<option value="${s.code}" data-name="${s.name}">${s.name} (${s.code})</option>`
-      )
-    )
-    .join('');
+function populateSpeciesSelectGrouped(selectElement, speciesList) {
+  if (!selectElement) return;
+  // Reset with prompt
+  selectElement.innerHTML = '<option value="">Choose the species...</option>';
+
+  // Group by first letter of species name
+  const speciesByLetter = {};
+  speciesList.forEach((speciesItem) => {
+    const letter = firstAlphaLetterUpper(speciesItem.name);
+    if (!speciesByLetter[letter]) speciesByLetter[letter] = [];
+    speciesByLetter[letter].push(speciesItem);
+  });
+
+  // Sort groups and items
+  const sortedLetters = Object.keys(speciesByLetter).sort((a, b) =>
+    a.localeCompare(b)
+  );
+
+  sortedLetters.forEach((letter) => {
+    const group = document.createElement('optgroup');
+    group.label = letter;
+
+    speciesByLetter[letter]
+      .slice()
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach((speciesItem) => {
+        const option = document.createElement('option');
+        option.value = speciesItem.code; // your save key
+        option.textContent = `${speciesItem.name} (${speciesItem.code})`;
+        option.dataset.name = speciesItem.name; // used elsewhere
+        group.appendChild(option);
+      });
+
+    selectElement.appendChild(group);
+  });
 }
 
 let flowerModal,
@@ -1379,6 +1448,7 @@ let flowerModal,
   errorElement,
   lastFocus,
   currentPlot,
+  plannedCheckbox,
   currentKey,
   intentionallyEmptyPlotCheckbox,
   clearPlotButton;
@@ -1391,25 +1461,19 @@ function setupModal() {
   flowerSelect = document.getElementById('cell-flower');
   patternSelect = document.getElementById('cell-pattern');
   plotNotes = document.getElementById('cell-notes');
+  plannedCheckbox = document.getElementById('plot-planned');
   clearPlotButton = document.getElementById('cell-clear');
   errorElement = document.getElementById('cell-error');
   intentionallyEmptyPlotCheckbox = document.getElementById('cell-empty');
 
-  // Build options markup once (fastest for large lists)
-  const colorOptions = ['<option value="">Choose the color...</option>']
-    .concat(
-      allFlowerColors.map(
-        (c) =>
-          `<option value="${c.hex}" data-name="${c.name}">${c.name}</option>`
-      )
-    )
-    .join('');
+  //
 
   const patternOptions = ['<option value="">No pattern</option>']
     .concat(flowerPatterns.map((p) => `<option value="${p}">${p}</option>`))
     .join('');
 
-  colorSelect.innerHTML = colorOptions;
+  // Build grouped Color select (A–Z headers + rule)
+  populateColorSelectGrouped(colorSelect, allFlowerColors);
   flowerSelect.innerHTML = '<option value="">Choose the species...</option>';
   patternSelect.innerHTML = patternOptions;
 
@@ -1438,7 +1502,7 @@ function setupModal() {
   flowerForm.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab') return;
     const focusables = flowerForm.querySelectorAll(
-      'buttonSelectorOrElement, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
     if (!focusables.length) return;
     const first = focusables[0];
@@ -1449,6 +1513,41 @@ function setupModal() {
     } else if (!event.shiftKey && document.activeElement === last) {
       event.preventDefault();
       first.focus();
+    }
+  });
+
+  // Enter-to-submit (accessible + predictable)
+  // - If the modal is open and Enter is pressed anywhere in the form, submit.
+  // - Exception: In the Notes textarea, Shift+Enter inserts a newline (no submit).
+  // - Enter on Cancel/Clear/Submit buttons uses the native button behavior.
+  flowerForm.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    if (flowerModal.getAttribute('aria-hidden') === 'true') return; // not open
+
+    const activeElement = document.activeElement;
+    const isButton =
+      activeElement?.tagName === 'BUTTON' ||
+      (activeElement?.getAttribute &&
+        activeElement.getAttribute('role') === 'button');
+    if (isButton) return; // let native click behavior occur
+
+    const isTextarea = activeElement?.tagName === 'TEXTAREA';
+    if (isTextarea && event.shiftKey) {
+      // Allow Shift+Enter to add a newline
+      return;
+    }
+
+    // In all other cases, Enter submits the form
+    event.preventDefault();
+    if (typeof flowerForm.requestSubmit === 'function') {
+      flowerForm.requestSubmit();
+    } else {
+      // Fallback for older browsers
+      const submitEvent = new Event('submit', {
+        bubbles: true,
+        cancelable: true,
+      });
+      flowerForm.dispatchEvent(submitEvent);
     }
   });
 
@@ -1478,6 +1577,7 @@ function setupModal() {
     const flowerName = flowerSelect.selectedOptions[0]?.dataset.name || '';
     const patternName = patternSelect.value || '';
     const notes = (plotNotes.value || '').trim().slice(0, max_notes_chars);
+    const planned = !!plannedCheckbox?.checked;
 
     if (!colorHex || !flowerNameCode) {
       errorElement.textContent = 'Please choose both a color and a flower.';
@@ -1493,6 +1593,7 @@ function setupModal() {
       flowerName,
       patternName,
       notes,
+      planned,
     };
 
     if (currentKey) localStorage.setItem(currentKey, JSON.stringify(payload));
@@ -1509,6 +1610,7 @@ function setupModal() {
     setSelectByValue(flowerSelect, '');
     setSelectByValue(patternSelect, '');
     plotNotes.value = '';
+    if (plannedCheckbox) plannedCheckbox.checked = false;
     const counterEl = document.getElementById('notes-count');
     if (counterEl) counterEl.textContent = '0';
     if (intentionallyEmptyPlotCheckbox)
@@ -1558,7 +1660,7 @@ function openCellModal(cell, key) {
   // Biome-aware species options
   const biome = biomeFromPlotState(key);
   const allowedSpecies = speciesForBiome(biome);
-  flowerSelect.innerHTML = renderSpeciesOptions(allowedSpecies);
+  populateSpeciesSelectGrouped(flowerSelect, allowedSpecies);
 
   // If a previously-saved species is now disallowed, inject a visible placeholder so it still shows
   if (saved.flowerNameCode) {
@@ -1573,7 +1675,13 @@ function openCellModal(cell, key) {
       } (not allowed in ${biome || 'this area'})`;
       opt.dataset.name = saved.flowerName || saved.flowerNameCode;
       opt.className = 'option-not-allowed';
-      flowerSelect.appendChild(opt);
+      // Place it after the prompt for visibility
+      const promptOption = flowerSelect.querySelector('option[value=""]');
+      if (promptOption && promptOption.nextSibling) {
+        flowerSelect.insertBefore(opt, promptOption.nextSibling);
+      } else {
+        flowerSelect.appendChild(opt);
+      }
     }
   }
 
@@ -1591,6 +1699,7 @@ function openCellModal(cell, key) {
   document.getElementById('notes-count').textContent = String(
     plotNotes.value.length
   );
+  if (plannedCheckbox) plannedCheckbox.checked = !!saved.planned;
   errorElement.textContent = '';
   flowerModal.setAttribute('aria-hidden', 'false');
 
