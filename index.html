@@ -929,9 +929,9 @@
 				</div>
 			</div>
 			<footer class="modal-footer">
-				<button id="help-back" class="btn btn-primary">Back</button>
+				<button id="help-back" class="btn btn-primary on-white">Back</button>
 				<button id="help-done" class="btn btn-cancel">Done</button>
-				<button id="help-next" class="btn btn-primary">Next</button>
+				<button id="help-next" class="btn btn-primary on-white">Next</button>
 			</footer>
 		</div>
 	</div>
@@ -945,12 +945,33 @@
 			<div class="modal-body">
 				<ul id="flower-codes-list" class="codes-list"></ul>
 			</div>
-			<footer class="modal-footer">
-				<button id="flower-codes-close" class="btn btn-primary" type="button">Close</button>
+			<footer class="modal-footer make-center">
+				<button id="flower-codes-close" class="btn btn-primary on-white" type="button">Close</button>
 			</footer>
 		</div>
 	</div>
 
+	<!-- Confirm Clear All Modal -->
+	<div id="confirm-clear-modal" class="modal" aria-hidden="true" aria-labelledby="confirm-clear-title">
+		<div class="modal-dialog" role="dialog" aria-modal="true">
+			<header class="modal-header">
+				<h3 id="confirm-clear-title">Are you sure?</h3>
+			</header>
+			<div class="modal-body">
+				<p id="confirm-clear-message">This is irreversible.</p>
+			</div>
+			<footer class="modal-footer">
+
+				<button id="confirm-clear-yes" class="btn btn-cancel" type="button">
+					Yes, erase data for this patch
+				</button>
+
+				<button id="confirm-clear-no" class="btn btn-primary on-white" type="button">
+					No, return to safety
+				</button>
+			</footer>
+		</div>
+	</div>
 
 	<script src="script.js"></script>
 </body>

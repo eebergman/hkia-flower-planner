@@ -1290,7 +1290,15 @@ function bindClearButton(
 
   const prefixSet = new Set(prefixesToClear.map((p) => p + '-'));
 
-  clearButtonElement.addEventListener('click', () => {
+  clearButtonElement.addEventListener('click', async () => {
+    // Build a friendly message using the button’s text (fallback provided)
+    const label = (clearButtonElement.textContent || 'Clear all data').trim();
+    const confirmed = await confirmClearAllDialog(
+      `${label} — This is irreversible.`
+    );
+    if (!confirmed) return; // user cancelled → do nothing
+
+    // Proceed with deletion only after confirmation
     const keysToDelete = [];
     for (let i = 0, len = localStorage.length; i < len; i++) {
       const storageKey = localStorage.key(i);
@@ -1302,10 +1310,13 @@ function bindClearButton(
         }
       }
     }
-    for (const k of keysToDelete) localStorage.removeItem(k);
+    for (const storageKey of keysToDelete) {
+      localStorage.removeItem(storageKey);
+    }
 
-    if (Array.isArray(gridsToRender) && gridsToRender.length)
+    if (Array.isArray(gridsToRender) && gridsToRender.length) {
       renderMany(gridsToRender);
+    }
   });
 }
 
@@ -2151,22 +2162,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!openBtn || !modal || !closeBtn || !listEl) return;
 
-  // Build the list from your existing `flowerSpecies` data
   function renderCodes() {
-    // Sort by name, then code
-    const items = (flowerSpecies || []).slice().sort((a, b) => {
-      const byName = a.name.localeCompare(b.name);
-      return byName !== 0 ? byName : a.code.localeCompare(b.code);
-    });
+    const items = (Array.isArray(flowerSpecies) ? flowerSpecies : [])
+      .slice()
+      .sort((a, b) => {
+        const byName = String(a.name).localeCompare(String(b.name));
+        return byName || String(a.code).localeCompare(String(b.code));
+      });
 
-    // Simple, readable list: “Name (CODE)”
     const frag = document.createDocumentFragment();
-    items.forEach(({ name, code }) => {
+    items.forEach(({ name: flowerName, code: flowerCode }) => {
       const li = document.createElement('li');
-      li.textContent = `${name} (${code})`;
+
+      const codeEl = document.createElement('span');
+      codeEl.className = 'flower-code';
+      codeEl.textContent = flowerCode;
+
+      const flowerNameEl = document.createElement('span');
+      flowerNameEl.className = 'flower-species-name';
+      flowerNameEl.textContent = ` - ${flowerName}`;
+
+      li.appendChild(codeEl);
+      li.append(flowerNameEl);
+
       frag.appendChild(li);
     });
 
+    // ⬇️ actually render it
     listEl.replaceChildren(frag);
   }
 
@@ -2186,12 +2208,12 @@ document.addEventListener('DOMContentLoaded', () => {
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
 
-  // Backdrop click closes (click only the overlay, not the dialog)
+  // Backdrop click closes
   modal.addEventListener('click', (evt) => {
     if (evt.target === modal) closeModal();
   });
 
-  // ESC to close while open
+  // ESC closes while open
   document.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
       evt.preventDefault();
@@ -2287,3 +2309,60 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModal();
   });
 })();
+
+// Reusable confirmation modal for destructive clears
+function confirmClearAllDialog(messageText = 'This is irreversible.') {
+  const modalEl = document.getElementById('confirm-clear-modal');
+  const msgEl = document.getElementById('confirm-clear-message');
+  const yesBtn = document.getElementById('confirm-clear-yes');
+  const noBtn = document.getElementById('confirm-clear-no');
+
+  if (!modalEl || !msgEl || !yesBtn || !noBtn) {
+    console.warn('ConfirmClear modal elements missing.');
+    return Promise.resolve(false);
+  }
+
+  msgEl.textContent = messageText;
+
+  return new Promise((resolve) => {
+    let resolved = false;
+
+    function open() {
+      modalEl.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open'); // block background scroll
+      yesBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+      modalEl.addEventListener('click', onBackdrop);
+      yesBtn.addEventListener('click', onYes);
+      noBtn.addEventListener('click', onNo);
+    }
+    function close(value) {
+      if (resolved) return;
+      resolved = true;
+      modalEl.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', onKeydown);
+      modalEl.removeEventListener('click', onBackdrop);
+      yesBtn.removeEventListener('click', onYes);
+      noBtn.removeEventListener('click', onNo);
+      resolve(value);
+    }
+    function onKeydown(evt) {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        close(false);
+      }
+    }
+    function onBackdrop(evt) {
+      if (evt.target === modalEl) close(false);
+    }
+    function onYes() {
+      close(true);
+    }
+    function onNo() {
+      close(false);
+    }
+
+    open();
+  });
+}

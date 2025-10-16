@@ -541,6 +541,20 @@ select:disabled {
   width: 40rem;
 }
 
+.flower-code {
+  font-weight: 700;
+  font-family: i-monospace, SFMono-Regular, Menlo;
+}
+
+.flower-species-name {
+  font-family: i-monospace, SFMono-Regular, Menlo;
+}
+
+.make-center {
+  display: flex;
+  justify-content: center;
+}
+
 .btn {
   border: 1px solid;
   border-radius: var(--ten-px);
