@@ -609,3 +609,11 @@ select:disabled {
   background: var(--gray);
   border-color: var(--gray);
 }
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(0.2);
+  cursor: not-allowed;
+}
