@@ -814,6 +814,99 @@
 		</div>
 	</div>
 
+	<!-- Help / How-To Modal -->
+	<div id="help-modal" class="modal" aria-hidden="true">
+		<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title">
+			<header class="modal-header">
+				<h3 id="help-title">How to use this site</h3>
+			</header>
+			<div class="modal-body">
+				<div class="help-modal-page-one">
+					<ol>
+						<li>
+							Click on the region (e.g. Merry Meadows)
+						</li>
+						<li>
+							Click on the flower patch you want (e.g.Fields West)
+							<details>
+								<summary>More</summary>
+								<p>
+									If you are unsure of the name of a flower patch there is a button that will link you
+									to
+									Meeve's maps under the header for each region
+								</p>
+							</details>
+						</li>
+						<li>
+							Now click on the plot you want to "plant" a flower in to open the Edit Plot modal
+						</li>
+					</ol>
+				</div>
+				<div class="help-modal-page-two">
+					<ol>
+						<li>
+							Click "Color" and choose from the drop down list.
+						</li>
+						<li>
+							Click "Flower" and choose from the drop down list.
+						</li>
+						<li>
+							If the flower is pattered you can also select that info.
+						</li>
+					</ol>
+
+					<strong>Note! Once you hit submit if you hover over the plot it will show you it's data. You can
+						also click on the plot to reopen the modal and see what you input.</strong>
+					<br> <br>
+
+				</div>
+				<div class="help-modal-page-three">
+					<p>
+						<span>
+							What is "Mark Plot Empty for New Plants to Grow?"
+						</span>
+						<br> <br>
+						<span>
+							This will "disable" that plot so you know that is at plot you have planned to leave empty.
+						</span>
+						<br> <br>
+					</p>
+					<p>
+						<span>
+							Why can't I select "Flower X/Y/X?"
+						</span>
+						<br> <br>
+						<span>
+							Each flower patch should only show you flowers you are able to plant in that patch as
+							dictated by the rules of the game.
+						</span>
+						<br> <br>
+					</p>
+
+				</div>
+			</div>
+			<footer class="modal-footer">
+				<button id="help-back" class="btn btn-primary">Back</button>
+				<button id="help-done" class="btn btn-cancel">Done</button>
+				<button id="help-next" class="btn btn-primary">Next</button>
+			</footer>
+		</div>
+	</div>
+
+	<!-- Flower Codes Modal -->
+	<div id="flower-codes-modal" class="modal" aria-hidden="true">
+		<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="flower-codes-title">
+			<header class="modal-header">
+				<h3 id="flower-codes-title">Flower Codes</h3>
+			</header>
+			<div class="modal-body">
+				<ul id="flower-codes-list" class="codes-list"></ul>
+			</div>
+			<footer class="modal-footer">
+				<button id="flower-codes-close" class="btn btn-primary" type="button">Close</button>
+			</footer>
+		</div>
+	</div>
 
 
 	<script src="script.js"></script>
