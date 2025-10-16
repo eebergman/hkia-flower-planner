@@ -764,7 +764,7 @@ const cloudOuterCabin = [
 ];
 
 // Extreme Areas
-// Caldera • Mailbox (CM) done
+// Caldera • Mailbox (CM)
 const calderaMailbox = [
   /*       123 */
   /* A */ '0-0',
@@ -2069,6 +2069,136 @@ document.addEventListener('DOMContentLoaded', () => {
     event.stopPropagation();
   });
 });
+
+(function setupHelpModal() {
+  const openButton = document.getElementById('open-help');
+  const modal = document.getElementById('help-modal');
+  const body = document.body;
+
+  const btnBack = document.getElementById('help-back');
+  const btnNext = document.getElementById('help-next');
+  const btnDone = document.getElementById('help-done');
+
+  if (!openButton || !modal || !btnBack || !btnNext || !btnDone) return;
+
+  // Each page is a direct child <div> under .modal-body
+  const pages = Array.from(modal.querySelectorAll('.modal-body > div'));
+  let pageIndex = 0;
+  const lastIndex = Math.max(0, pages.length - 1);
+
+  function showPage(i) {
+    pageIndex = Math.min(Math.max(i, 0), lastIndex);
+
+    // Show only the active page
+    pages.forEach((page, idx) => {
+      const isActive = idx === pageIndex;
+      page.hidden = !isActive;
+      page.setAttribute('aria-hidden', String(!isActive));
+    });
+
+    btnBack.disabled = pageIndex === 0;
+    btnNext.disabled = pageIndex === lastIndex;
+  }
+
+  function openModal() {
+    modal.setAttribute('aria-hidden', 'false');
+    body.classList.add('modal-open'); // block background scroll
+    showPage(0);
+    (pages.length > 1 ? btnNext : btnDone).focus();
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    body.classList.remove('modal-open'); // restore scroll
+    openButton.focus();
+  }
+
+  // Wire up
+  openButton.addEventListener('click', openModal);
+  btnBack.addEventListener('click', () => showPage(pageIndex - 1));
+  btnNext.addEventListener('click', () => showPage(pageIndex + 1));
+  btnDone.addEventListener('click', closeModal);
+
+  // Backdrop click closes (only if clicking the overlay, not the dialog)
+  modal.addEventListener('click', (evt) => {
+    if (evt.target === modal) closeModal();
+  });
+
+  // Keyboard: Esc closes; ←/→ paginate while open
+  document.addEventListener('keydown', (evt) => {
+    if (modal.getAttribute('aria-hidden') === 'true') return;
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      closeModal();
+    } else if (evt.key === 'ArrowRight' && pageIndex < lastIndex) {
+      evt.preventDefault();
+      showPage(pageIndex + 1);
+    } else if (evt.key === 'ArrowLeft' && pageIndex > 0) {
+      evt.preventDefault();
+      showPage(pageIndex - 1);
+    }
+  });
+
+  // In case the modal is present but closed on load, hide all but first
+  showPage(0);
+})();
+
+(function setupFlowerCodesModal() {
+  const openBtn = document.getElementById('open-flower-codes');
+  const modal = document.getElementById('flower-codes-modal');
+  const closeBtn = document.getElementById('flower-codes-close');
+  const listEl = document.getElementById('flower-codes-list');
+
+  if (!openBtn || !modal || !closeBtn || !listEl) return;
+
+  // Build the list from your existing `flowerSpecies` data
+  function renderCodes() {
+    // Sort by name, then code
+    const items = (flowerSpecies || []).slice().sort((a, b) => {
+      const byName = a.name.localeCompare(b.name);
+      return byName !== 0 ? byName : a.code.localeCompare(b.code);
+    });
+
+    // Simple, readable list: “Name (CODE)”
+    const frag = document.createDocumentFragment();
+    items.forEach(({ name, code }) => {
+      const li = document.createElement('li');
+      li.textContent = `${name} (${code})`;
+      frag.appendChild(li);
+    });
+
+    listEl.replaceChildren(frag);
+  }
+
+  function openModal() {
+    renderCodes();
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open'); // block background scroll
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open'); // restore scroll
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  // Backdrop click closes (click only the overlay, not the dialog)
+  modal.addEventListener('click', (evt) => {
+    if (evt.target === modal) closeModal();
+  });
+
+  // ESC to close while open
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      evt.preventDefault();
+      closeModal();
+    }
+  });
+})();
 
 (function setupFeedbackModal() {
   var modalElement = document.getElementById('feedback-modal');
