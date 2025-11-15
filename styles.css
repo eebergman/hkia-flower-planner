@@ -447,6 +447,21 @@ body.modal-open {
   z-index: 1000;
 }
 
+#help-modal[aria-hidden='false'] {
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
+#faqs-modal[aria-hidden='false'] {
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
+#tips-modal[aria-hidden='false'] {
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
 #feedback-modal[aria-hidden='true'] {
   display: none;
 }
