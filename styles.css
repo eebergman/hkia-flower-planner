@@ -439,6 +439,7 @@ body.modal-open {
 
 /* Basic modal shell (reuses your palette) */
 #feedback-modal[aria-hidden='false'] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: fixed;
   inset: 0;
   display: grid;
@@ -448,16 +449,19 @@ body.modal-open {
 }
 
 #help-modal[aria-hidden='false'] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgba(0, 0, 0, 0.35);
   z-index: 1000;
 }
 
 #faqs-modal[aria-hidden='false'] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgba(0, 0, 0, 0.35);
   z-index: 1000;
 }
 
 #tips-modal[aria-hidden='false'] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgba(0, 0, 0, 0.35);
   z-index: 1000;
 }
