@@ -53,7 +53,7 @@ const flowerSpecies = [
       'Gemstone',
       'Greenhouse',
       'Cloud',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -66,7 +66,7 @@ const flowerSpecies = [
       'Gemstone',
       'Greenhouse',
       'Cloud',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -79,7 +79,7 @@ const flowerSpecies = [
       'Gemstone',
       'Greenhouse',
       'Cloud',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -92,7 +92,7 @@ const flowerSpecies = [
       'Gemstone',
       'Greenhouse',
       'Cloud',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -104,33 +104,33 @@ const flowerSpecies = [
       'Swamp',
       'Volcano',
       'Greenhouse',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
     name: 'Ghostgleam',
     code: 'GG',
-    biomes: ['Swamp', 'Gemstone', 'Reef', 'Greenhouse', 'Cloud', 'Wheatflower'],
+    biomes: ['Swamp', 'Gemstone', 'Reef', 'Greenhouse', 'Cloud', 'Wheatflour'],
   },
   {
     name: 'Thistle',
     code: 'TH',
-    biomes: ['Swamp', 'Gemstone', 'Volcano', 'Greenhouse', 'Wheatflower'],
+    biomes: ['Swamp', 'Gemstone', 'Volcano', 'Greenhouse', 'Wheatflour'],
   },
   {
     name: 'Heavy Nettle',
     code: 'HN',
-    biomes: ['Gemstone', 'Volcano', 'Greenhouse', 'Wheatflower'],
+    biomes: ['Gemstone', 'Volcano', 'Greenhouse', 'Wheatflour'],
   },
   {
     name: 'Anemone',
     code: 'AN',
-    biomes: ['Reef', 'Greenhouse', 'Cloud', 'Wheatflower'],
+    biomes: ['Reef', 'Greenhouse', 'Cloud', 'Wheatflour'],
   },
   {
     name: 'Dreampuff',
     code: 'DP',
-    biomes: ['Greenhouse', 'Cloud', 'Wheatflower'],
+    biomes: ['Greenhouse', 'Cloud', 'Wheatflour'],
   },
   { name: 'Frostfeather', code: 'FF', biomes: ['Peak'] },
   { name: 'Blazebulb', code: 'BZ', biomes: ['Caldera'] },
@@ -139,7 +139,7 @@ const flowerSpecies = [
   {
     name: 'Wheatflower',
     code: 'WF',
-    biomes: ['Greenhouse', 'Wheatflower'],
+    biomes: ['Greenhouse', 'Wheatflour'],
   },
   {
     name: 'Marigold',
@@ -150,7 +150,7 @@ const flowerSpecies = [
       'Gemstone',
       'Volcano',
       'Greenhouse',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -169,7 +169,7 @@ const flowerSpecies = [
       'Caldera',
       'Caves',
       'Moon',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -181,7 +181,7 @@ const flowerSpecies = [
       'Gemstone',
       'Greenhouse',
       'Cloud',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -193,7 +193,7 @@ const flowerSpecies = [
       'Swamp',
       'Gemstone',
       'Greenhouse',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
@@ -208,13 +208,13 @@ const flowerSpecies = [
       'Peak',
       'Caldera',
       'Caves',
-      'Wheatflower',
+      'Wheatflour',
     ],
   },
   {
     name: 'Poinsettia',
     code: 'PS',
-    biomes: ['Meadow', 'Resort', 'Swamp', 'Greenhouse', 'Wheatflower'],
+    biomes: ['Meadow', 'Resort', 'Swamp', 'Greenhouse', 'Wheatflour'],
   },
   {
     name: 'Glowbal',
@@ -228,14 +228,14 @@ const flowerSpecies = [
       'Peak',
       'Caldera',
       'Caves',
-      'Wheatflower',
+      'Wheatflour',
       'Moon',
     ],
   },
   {
     name: 'Rose',
     code: 'RS',
-    biomes: ['Meadow', 'Resort', 'Greenhouse', 'Wheatflower'],
+    biomes: ['Meadow', 'Resort', 'Greenhouse', 'Wheatflour'],
   },
   {
     name: 'Happadil',
@@ -248,7 +248,7 @@ const flowerSpecies = [
       'Greenhouse',
       'Cloud',
       'Caves',
-      'Wheatflower',
+      'Wheatflour',
       'Moon',
     ],
   },
@@ -793,8 +793,8 @@ const theMoon = [
   /* B */ '---',
 ];
 
-// 1. Wheatflower • Upper Left (UL1)
-const wheatflowerUpperLeft = [
+// 1. Wheatflour • Upper Left (UL1)
+const wheatflourUpperLeft = [
   /*       1234567890-23 */
   /* A */ '-------------',
   /* B */ '-------------',
@@ -807,8 +807,8 @@ const wheatflowerUpperLeft = [
   /* I */ '-------------',
 ];
 
-// 2. Wheatflower • Upper Right (UR)
-const wheatflowerUpperRight = [
+// 2. Wheatflour • Upper Right (UR)
+const wheatflourUpperRight = [
   /*       1234567890-2345 */
   /* A */ '---------------',
   /* B */ '---------------',
@@ -818,8 +818,8 @@ const wheatflowerUpperRight = [
   /* F */ '---------------',
 ];
 
-// 3. Wheatflower • Lower Left (LL)
-const wheatflowerLowerLeft = [
+// 3. Wheatflour • Lower Left (LL)
+const wheatflourLowerLeft = [
   /*       1234567890-2 */
   /* A */ '------------',
   /* B */ '------------',
@@ -833,8 +833,8 @@ const wheatflowerLowerLeft = [
   /* J */ '------------',
 ];
 
-// 4. Wheatflower • Lower Right (LR)
-const wheatflowerLowerRight = [
+// 4. Wheatflour • Lower Right (LR)
+const wheatflourLowerRight = [
   /*       1234567890-2 */
   /* A */ '------------',
   /* B */ '------------',
@@ -1112,23 +1112,23 @@ const flowerPatchInfo = [
 
   // Wheatflour Wonderland
   {
-    el: '#wheatflower-upper-left',
-    rows: wheatflowerUpperLeft,
+    el: '#wheatflour-upper-left',
+    rows: wheatflourUpperLeft,
     location: 'Wheatflour',
   },
   {
-    el: '#wheatflower-upper-right',
-    rows: wheatflowerUpperRight,
+    el: '#wheatflour-upper-right',
+    rows: wheatflourUpperRight,
     location: 'Wheatflour',
   },
   {
-    el: '#wheatflower-lower-left',
-    rows: wheatflowerLowerLeft,
+    el: '#wheatflour-lower-left',
+    rows: wheatflourLowerLeft,
     location: 'Wheatflour',
   },
   {
-    el: '#wheatflower-lower-right',
-    rows: wheatflowerLowerRight,
+    el: '#wheatflour-lower-right',
+    rows: wheatflourLowerRight,
     location: 'Wheatflour',
   },
 ];
@@ -1495,6 +1495,8 @@ function biomeFromPlotState(plotKey) {
 }
 
 function speciesForBiome(biome) {
+  console.log(biome);
+
   if (!biome) return flowerSpecies; // fallback
   return flowerSpecies.filter(
     (s) => Array.isArray(s.biomes) && s.biomes.includes(biome)
