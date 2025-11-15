@@ -2156,6 +2156,138 @@ document.addEventListener('DOMContentLoaded', () => {
   showPage(0);
 })();
 
+(function setupFAQModal() {
+  const openButton = document.getElementById('open-faqs');
+  const modal = document.getElementById('faqs-modal');
+  const body = document.body;
+
+  const btnDone = document.getElementById('faqs-done');
+
+  if (!openButton || !modal || !btnDone) return;
+
+  // Each page is a direct child <div> under .modal-body
+  const pages = Array.from(modal.querySelectorAll('.modal-body > div'));
+  let pageIndex = 0;
+  const lastIndex = Math.max(0, pages.length - 1);
+
+  function showPage(i) {
+    pageIndex = Math.min(Math.max(i, 0), lastIndex);
+
+    // Show only the active page
+    pages.forEach((page, idx) => {
+      const isActive = idx === pageIndex;
+      page.hidden = !isActive;
+      page.setAttribute('aria-hidden', String(!isActive));
+    });
+  }
+
+  function openModal() {
+    modal.setAttribute('aria-hidden', 'false');
+    body.classList.add('modal-open'); // block background scroll
+    showPage(0);
+    (pages.length > 1 ? btnNext : btnDone).focus();
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    body.classList.remove('modal-open'); // restore scroll
+    openButton.focus();
+  }
+
+  // Wire up
+  openButton.addEventListener('click', openModal);
+  btnDone.addEventListener('click', closeModal);
+
+  // Backdrop click closes (only if clicking the overlay, not the dialog)
+  modal.addEventListener('click', (evt) => {
+    if (evt.target === modal) closeModal();
+  });
+
+  // Keyboard: Esc closes; ←/→ paginate while open
+  document.addEventListener('keydown', (evt) => {
+    if (modal.getAttribute('aria-hidden') === 'true') return;
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      closeModal();
+    } else if (evt.key === 'ArrowRight' && pageIndex < lastIndex) {
+      evt.preventDefault();
+      showPage(pageIndex + 1);
+    } else if (evt.key === 'ArrowLeft' && pageIndex > 0) {
+      evt.preventDefault();
+      showPage(pageIndex - 1);
+    }
+  });
+
+  // In case the modal is present but closed on load, hide all but first
+  showPage(0);
+})();
+
+(function setupTipsModal() {
+  const openButton = document.getElementById('open-tips');
+  const modal = document.getElementById('tips-modal');
+  const body = document.body;
+
+  const btnDone = document.getElementById('tips-done');
+
+  if (!openButton || !modal || !btnDone) return;
+
+  // Each page is a direct child <div> under .modal-body
+  const pages = Array.from(modal.querySelectorAll('.modal-body > div'));
+  let pageIndex = 0;
+  const lastIndex = Math.max(0, pages.length - 1);
+
+  function showPage(i) {
+    pageIndex = Math.min(Math.max(i, 0), lastIndex);
+
+    // Show only the active page
+    pages.forEach((page, idx) => {
+      const isActive = idx === pageIndex;
+      page.hidden = !isActive;
+      page.setAttribute('aria-hidden', String(!isActive));
+    });
+  }
+
+  function openModal() {
+    modal.setAttribute('aria-hidden', 'false');
+    body.classList.add('modal-open'); // block background scroll
+    showPage(0);
+    (pages.length > 1 ? btnNext : btnDone).focus();
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    body.classList.remove('modal-open'); // restore scroll
+    openButton.focus();
+  }
+
+  // Wire up
+  openButton.addEventListener('click', openModal);
+  btnDone.addEventListener('click', closeModal);
+
+  // Backdrop click closes (only if clicking the overlay, not the dialog)
+  modal.addEventListener('click', (evt) => {
+    if (evt.target === modal) closeModal();
+  });
+
+  // Keyboard: Esc closes; ←/→ paginate while open
+  document.addEventListener('keydown', (evt) => {
+    if (modal.getAttribute('aria-hidden') === 'true') return;
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      closeModal();
+    } else if (evt.key === 'ArrowRight' && pageIndex < lastIndex) {
+      evt.preventDefault();
+      showPage(pageIndex + 1);
+    } else if (evt.key === 'ArrowLeft' && pageIndex > 0) {
+      evt.preventDefault();
+      showPage(pageIndex - 1);
+    }
+  });
+
+  // In case the modal is present but closed on load, hide all but first
+  showPage(0);
+})();
+
 (function setupFlowerCodesModal() {
   const openBtn = document.getElementById('open-flower-codes');
   const modal = document.getElementById('flower-codes-modal');

@@ -14,6 +14,8 @@
 			<h2>HKIA Garden Planning</h2>
 			<div>
 				<button id="open-help" class="btn btn-primary" type="button" aria-haspopup="dialog">Help</button>
+				<button id="open-faqs" class="btn btn-primary" type="button" aria-haspopup="dialog">FAQs</button>
+				<button id="open-tips" class="btn btn-primary" type="button" aria-haspopup="dialog">Tips</button>
 				<button id="open-flower-codes" class="btn btn-primary" type="button" aria-haspopup="dialog">Show Flower
 					Codes</button>
 			</div>
@@ -903,7 +905,22 @@
 					<br> <br>
 
 				</div>
-				<div class="help-modal-page-three">
+			</div>
+			<footer class="modal-footer">
+				<button id="help-back" class="btn btn-primary on-white">Back</button>
+				<button id="help-done" class="btn btn-cancel">Done</button>
+				<button id="help-next" class="btn btn-primary on-white">Next</button>
+			</footer>
+		</div>
+	</div>
+
+	<div id="faqs-modal" class="modal" aria-hidden="true">
+		<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="faqs-title">
+			<header class="modal-header">
+				<h3 id="faqs-title">Some Questions</h3>
+			</header>
+			<div class="modal-body">
+				<div class="faqs-modal-page-one">
 					<p>
 						<span>
 							<strong>
@@ -914,6 +931,19 @@
 						<span>
 							This will "disable" that plot so you know that is at plot you have planned to leave empty.
 							Click the plot again to remove that checkmark and reenable the plot.
+						</span>
+						<br> <br>
+					</p>
+					<p>
+						<span>
+							<strong>
+								Can I save this on my computer and load it on my phone later?
+							</strong>
+						</span>
+						<br> <br>
+						<span>
+							Not yet. I am working on a way you can transfer the data from one machine to another but TBD
+							right now. Also I promise I tried but it still looks a little silly on phones.
 						</span>
 						<br> <br>
 					</p>
@@ -940,22 +970,59 @@
 						<span>
 							If you want to plan a patch that includes a flower you do <strong>not</strong> yet have you
 							would fill out
-							the color and species and then click the "Planned Plot".
-						</span>
-						<br> <br>
-						<span>
-							When completed you will have a
-							planned out patch you can follow along with in game, then when you finally get your Gray
-							Bellbutton you just click on that plot again and uncheck "Planned Plot"
+							the color and species and then click the "Planned Plot". Later you can edit that plot when
+							you get that flower.
 						</span>
 						<br> <br>
 					</p>
 				</div>
 			</div>
 			<footer class="modal-footer">
-				<button id="help-back" class="btn btn-primary on-white">Back</button>
-				<button id="help-done" class="btn btn-cancel">Done</button>
-				<button id="help-next" class="btn btn-primary on-white">Next</button>
+				<button id="faqs-done" class="btn btn-cancel">Done</button>
+			</footer>
+		</div>
+	</div>
+
+	<div id="tips-modal" class="modal" aria-hidden="true">
+		<div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="faqs-title">
+			<header class="modal-header">
+				<h3 id="tips-title">Quick Tips</h3>
+			</header>
+			<div class="modal-body">
+				<div class="tips-modal-page-one">
+					<p>
+						<span>
+							Hovering over any plot you have filled out will show you a tooltip with that plot's
+							information
+						</span>
+						<br> <br>
+					</p>
+					<p>
+						<span>
+							Clicking on a patch header like the pink "1. Fields West and 2. Mini" will collapse that
+							flower patch until you click on it again.
+						</span>
+						<br> <br>
+					</p>
+					<p>
+						<span>
+							You can also click on the pink "Merry Meadows" header to collapse the whole region. Try it
+							with any of the header bars.
+						</span>
+						<br> <br>
+					</p>
+					<p>
+						<span>
+							An asterisk next to a two letter flower code means you selected this as a patterned flower.
+							Hovering over the plot will tell you exactly which pattern you selected.
+						</span>
+						<br> <br>
+					</p>
+
+				</div>
+			</div>
+			<footer class="modal-footer">
+				<button id="tips-done" class="btn btn-cancel">Done</button>
 			</footer>
 		</div>
 	</div>
