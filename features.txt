@@ -1,0 +1,30 @@
+Hello I would like to introduce the HKIA Garden Planning web app.
+I made this as a side project for myself, and I hope it is able to be of some use to others too.
+
+What this app does.
+This app allows you to plan out where you planted something, and WHY you planted it. 
+Then it saves that information to your browser so you can reference it again later.
+
+What this app does not do.
+The HKIA Garden Planning app does not predict what may grow where. The Flower Generator App already does a great job of that.
+
+Features
+Select a plot to save the information you want about it
+You can save small notes to each plot
+See all information about a plot by hovering over it
+You can "block" a plot by "Marking it Empty"
+Each patch knows which flowers you are allowed to plant there
+You can mark a plot as planned
+Hide any patch or region by clicking on the named header
+Save your data to the same browser
+View the Greenhouse at any size
+Feedback through the app
+Should function with accessibility tools like screen readers. 
+(If there is a problem with accessibility please use the Feedback button and at me here)
+
+Future Plans
+Allow users access their data on more than one machine
+Make mobile experience nicer.
+Give users a way to limit drop downs to only flower combinations they already own.
+
+One million "thank yous" to Meeve. Those maps rule and made programming the patches so easy.
